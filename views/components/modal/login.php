@@ -12,7 +12,8 @@
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input type="password" name="password" placeholder="Password *">
+                    <input class="password" id="password" type="password" name="password" placeholder="Password *">
+                    <label for="password" class="icon-eye form__toggle-password"></label>
                 </div>
 
                 <div class="divider"></div>

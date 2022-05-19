@@ -15,6 +15,10 @@
             ?>
         </section>
     </div>
+
+    <?php
+        include 'components/modal/login.php';
+    ?>
     
 </div>
 

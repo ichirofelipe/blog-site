@@ -1,8 +1,21 @@
 $(function() {
 
-    //ON LOAD FUNCTIONS
+    /*=====================*\
+            ONLOAD
+    \*=====================*/
+
     renderCaptcha();
 
+    /*=====================*\
+        END OF ONLOAD
+    \*=====================*/
+
+
+    
+
+    /*=====================*\
+            DROPDOWN
+    \*=====================*/
 
     //HIDE ELEMENT ON CLICK OUTSIDE    
     $(document).on('click', function(){
@@ -16,6 +29,94 @@ $(function() {
         $(this).find('.dropdown').toggleClass('active');
     });
 
+    /*=====================*\
+        END OF DROPDOWN
+    \*=====================*/
+
+
+
+
+
+    
+    /*=====================*\
+              MENU
+    \*=====================*/
+
+    //TOGGLE MENU BURGER
+    $(".menu-btn__burger").on('click', function (){
+        let target = $(this).data('target');
+        $(this).toggleClass('open');
+        $(target).toggleClass('open');
+    });
+
+    /*=====================*\
+           END OF MENU
+    \*=====================*/
+
+
+
+
+
+    /*=====================*\
+              FORMS
+    \*=====================*/
+    
+    //TOGGLE PASSWORD HIDE/SHOW
+    $(document).on('click', '.form__toggle-password', function (){
+        let type = $(this).prev().attr('type');
+        $(this).toggleClass('icon-eye icon-eye-off');
+        if(type == 'password'){
+            $(this).prev().prop("type", "text");
+            return;
+        }
+        $(this).prev().prop("type", "password");
+    });
+    //ON SUBMIT FORM VALIDATION
+    $(document).on('submit', '.form--validate', function (e){
+        e.preventDefault();
+        validateForm($(this));
+    })
+    
+    
+    
+    //FORM VALIDATION
+    function validateForm(form){
+        var errors = {};
+        form.find('[data-validation]').each(function () {
+            let el = $(this);
+            let name = el.attr('name');
+            let fieldname = el.data('fieldname');
+            let rules = el.data('validation').split(',');
+            errors = rules.map(function (rule){
+                switch(rule){
+                    case 'required':
+                        if(isEmpty(el.val()))
+                            errors.push({name: `${fieldname} is required`})
+                        break;
+                }
+            });
+        });
+
+        console.log(errors);
+    }
+    //CHECK IF INPUT IS EMPTY
+    function isEmpty(str){
+        return (!str || str.length === 0 );
+    }
+
+    /*=====================*\
+          END OF FORMS
+    \*=====================*/
+
+
+
+    
+    
+    /*=====================*\
+            MODAL
+    \*=====================*/
+
+    //REMOVE/CLOSE MODAL
     $(document).on('click', ".modal__close", function(){
         removeModal()
     });
@@ -40,6 +141,24 @@ $(function() {
             })
         }
     });
+
+    //REMOVE MODAL
+    function removeModal(remove = true){
+        $('#modal').remove()
+        if(remove)
+            $('body,html').removeClass('disable');
+    }
+
+    /*=====================*\
+        END OF MODAL
+    \*=====================*/
+
+
+
+    /*=====================*\
+            CAPTCHA
+    \*=====================*/
+
     //REFRESH CAPTCHA
     $(document).on('click','.captcha__refresh', function (){
         renderCaptcha();
@@ -48,21 +167,9 @@ $(function() {
     $(document).on('mousedown', '.captcha__container', function(e) {
         e.preventDefault();
     })
-    //TOGGLE MENU BURGER
-    $(".menu-btn__burger").on('click', function (){
-        let target = $(this).data('target');
-        $(this).toggleClass('open');
-        $(target).toggleClass('open');
-    });
 
 
-
-
-
-
-
-
-
+    //VALIDATE CAPTCHA
     function validateCaptcha(str){
         let captcha = removeSpaces($('#captcha').val());
         let input = removeSpaces($('#captcha-input').val());
@@ -71,21 +178,16 @@ $(function() {
             return true
         return false
     }
-    //REMOVE MODAL
-    function removeModal(remove = true){
-        $('#modal').remove()
-        if(remove)
-            $('body,html').removeClass('disable');
-    }
     //RENDER CAPTCHA
     function renderCaptcha(){
-        $('.captcha').each(function (){
-            let code = generateCaptcha();
-            let num1 = generateNumber();
-            let num2 = generateNumber();
-            $(this).val(code).attr('style',`transform: skew(${num1}deg, ${num2}deg);`);
-        });
-
+        if($('.captcha').length){
+            $('.captcha').each(function (){
+                let code = generateCaptcha();
+                let num1 = generateNumber();
+                let num2 = generateNumber();
+                $(this).val(code).attr('style',`transform: skew(${num1}deg, ${num2}deg);`);
+            });
+        }
     }
     //GENERATE RANDOM NUMBER
     function generateNumber(max = 10, hasNegative = true){
@@ -109,7 +211,6 @@ $(function() {
         var code = tmpCode.join('');
         return code;
     }
-
     //CHECK IF STRING IS NUMERIC
     function isNumeric(str) {
         if (typeof str != "string") return false
@@ -120,5 +221,9 @@ $(function() {
     function removeSpaces(string) {
         return string.split(' ').join('');
     }
+
+    /*=====================*\
+        END OF CAPTCHA
+    \*=====================*/
 
 });

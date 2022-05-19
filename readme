@@ -1,2 +1,4 @@
 Installation Guide!
+>> CREATE DATABASE database 'bookmark'
+>> Import SQL file in root folder (Fresh / Seeded)
 >> 

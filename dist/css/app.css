@@ -1,4 +1,4 @@
-.pagination, .pagination__link, .modal__overlay, .form__group--append, .form__group--append > span, .menu-btn, #account span {
+.pagination, .pagination__link, .modal__overlay, .form__group--append > span:not(:last-child), .form__toggle-password, .form__group--append, .menu-btn, #account span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -636,6 +636,11 @@ img {
   background: #FFFFFF;
 }
 
+.form__group--append > span:not(:last-child), .form__toggle-password {
+  width: 30px;
+  padding: 0 7px;
+}
+
 .form__group {
   position: relative;
   border-radius: 5px;
@@ -644,9 +649,7 @@ img {
   overflow: hidden;
 }
 
-.form__group--append > span {
-  width: 30px;
-  padding: 0 7px;
+.form__group--append > span:not(:last-child) {
   border-right: 1px solid #dddddd;
 }
 
@@ -660,6 +663,27 @@ img {
   border: none;
   outline: none;
   font-family: sans-serif;
+}
+
+.form__group input::-ms-reveal, .form__group input::-ms-clear {
+  display: none;
+}
+
+.form__group input.password:focus ~ label {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.form__toggle-password {
+  cursor: pointer;
+  border-right: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form__toggle-password:hover {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .form__actions {

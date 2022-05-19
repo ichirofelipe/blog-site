@@ -15,13 +15,13 @@
             <a class="pagination__link" href="javascript:void(0)">2</a>
         </li>
         <li class="pagination__item static">
-            <a class="pagination__link" href="javascript:void(0)">...</a>
+            <a class="pagination__link" href="javascript:void(0)">3</a>
         </li>
         <li class="pagination__item">
-            <a class="pagination__link" href="javascript:void(0)">20</a>
+            <a class="pagination__link" href="javascript:void(0)">4</a>
         </li>
         <li class="pagination__item">
-            <a class="pagination__link" href="javascript:void(0)">21</a>
+            <a class="pagination__link" href="javascript:void(0)">5</a>
         </li>
         <li class="pagination__item">
             <a class="pagination__link" href="javascript:void(0)">

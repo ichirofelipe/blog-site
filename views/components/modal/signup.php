@@ -5,18 +5,20 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">Create New Account</h3>
             </div>
-            <form method="POST" action="/signup">
+            <form class="form--validate" method="POST" action="/signup">
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
-                    <input type="text" name="username" placeholder="Username *">
+                    <input data-fieldname="Username" data-validation="required,limit:50" type="text" name="username" placeholder="Username *">
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input type="password" name="password" placeholder="Password *">
+                    <input data-fieldname="Password" data-validation="required,limit:50" class="password" id="password" type="password" name="password" placeholder="Password *">
+                    <label for="password" class="icon-eye form__toggle-password"></label>
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input type="password" name="c_password" placeholder="Confirm Password *">
+                    <input class="password" id="c_password" type="password" name="c_password" placeholder="Confirm Password *">
+                    <label for="c_password" class="icon-eye form__toggle-password"></label>
                 </div>
 
                 <div class="divider"></div>
@@ -32,9 +34,9 @@
                     <input class="text-center" placeholder="Please enter the text displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
                 </div>
 
-                <div class="d-flex align-items-center mt-1">
+                <label class="d-flex align-items-center mt-1">
                     <input class="m-0" type="checkbox"><small class="ml-1 d-block color-default">Do you agree to the <a class="color-default" target="_blank" href="/terms">Terms and Conditions</a>?</small>
-                </div>
+                </label>
 
                 <div class="form__actions">
                     <button type="submit" class="form__submit d-block">Continue</button>

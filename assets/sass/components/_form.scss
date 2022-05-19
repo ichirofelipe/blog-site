@@ -1,3 +1,9 @@
+%icon-class{
+    @extend %center-content;
+    width: 30px;
+    padding: 0 7px;
+}
+
 .form{
     @include e(group){
         position: relative;
@@ -9,10 +15,8 @@
         @include m(append){
             @extend %center-content;
 
-            & > span{
-                @extend %center-content;
-                width: 30px;
-                padding: 0 7px;
+            & > span:not(:last-child){
+                @extend %icon-class;
                 border-right: 1px solid map-get($colors, "dirtywhite");
             }
         }
@@ -27,6 +31,32 @@
             border: none;
             outline: none;
             font-family: sans-serif;
+        }
+        input{
+            &::-ms-reveal,
+            &::-ms-clear {
+                display: none;
+            }
+
+            &.password{
+                &:focus ~ label{
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+    }
+
+    @include e(toggle-password){
+        @extend %icon-class;
+        cursor: pointer;
+        border-right: none;
+        opacity: 0;
+        pointer-events: none;
+
+        &:hover{
+            opacity: 1;
+            pointer-events: all;
         }
     }
 

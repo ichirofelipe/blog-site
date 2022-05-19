@@ -1,0 +1,3 @@
+create table `users` (`id` bigint unsigned not null auto_increment primary key, `user_name` varchar(50) not null, `password` varchar(50) not null, `is_admin_approved` tinyint not null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+create table `posts` (`id` bigint unsigned not null auto_increment primary key, `title` varchar(256) not null, `url` varchar(256) not null, `desc` varchar(2048) not null, `user_id` bigint unsigned not null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `posts` add constraint `posts_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade
