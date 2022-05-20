@@ -17,7 +17,7 @@
     </div>
 
     <?php
-        include 'components/modal/login.php';
+        include 'components/modal/signup.php';
     ?>
     
 </div>

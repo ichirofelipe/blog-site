@@ -73,31 +73,62 @@ $(function() {
     });
     //ON SUBMIT FORM VALIDATION
     $(document).on('submit', '.form--validate', function (e){
+        let errors = validateForm($(this));
+        if(errors.length == 0)
+            return;
         e.preventDefault();
-        validateForm($(this));
+        renderErrors($(this), errors);
     })
     
     
-    
+    //DISPLAY ERRORS
+    function renderErrors(el, errors){
+        el.find('.form__group--error').removeClass('form__group--error').next().remove();
+        errors.map(function (error) {
+            let parent = el.find(`[name=${error.name}]`).parent();
+            if(!parent.hasClass('form__group--error')){
+                parent.addClass('form__group--error');
+                parent.after(`<small class="form__error">${error.message}</small>`);
+            }
+        })
+    }
     //FORM VALIDATION
     function validateForm(form){
-        var errors = {};
-        form.find('[data-validation]').each(function () {
+        var errors = [];
+        
+        //FIND ALL INPUT WITH ATTRIBUTE [data-rules]
+        form.find('[data-rules]').each(function () {
             let el = $(this);
             let name = el.attr('name');
             let fieldname = el.data('fieldname');
-            let rules = el.data('validation').split(',');
-            errors = rules.map(function (rule){
+            let rules = el.data('rules').split(',');
+            rules.map(function (rule){
                 switch(rule){
                     case 'required':
                         if(isEmpty(el.val()))
-                            errors.push({name: `${fieldname} is required`})
+                            errors.push({name: name,message: `${fieldname} is required`})
+                        if(el.val() == 'check' && !el.is(":checked"))
+                            errors.push({name: name,message: `Please accept ${fieldname} to continue`})
+                        break;
+                    case 'confirm':
+                        let pass = $(el.data('confirm'));
+                        if(el.val() != pass.val())
+                            errors.push({name: name,message: `${fieldname} does not match`})
+                        break;
+                    default:
+                        if(rule.split(':').length != 2)
+                            break;
+                        let newrule = rule.split(':');
+                        if(el.val().length > newrule[1] && newrule[0] == 'max')
+                            errors.push({name: name,message: `${fieldname} must not be more than ${newrule[1]} characters`})
+                        if(el.val().length < newrule[1] && newrule[0] == 'min')
+                            errors.push({name: name,message: `${fieldname} must not be less than ${newrule[1]} characters`})
                         break;
                 }
             });
         });
 
-        console.log(errors);
+        return errors;
     }
     //CHECK IF INPUT IS EMPTY
     function isEmpty(str){
@@ -170,14 +201,14 @@ $(function() {
 
 
     //VALIDATE CAPTCHA
-    function validateCaptcha(str){
-        let captcha = removeSpaces($('#captcha').val());
-        let input = removeSpaces($('#captcha-input').val());
+    // function validateCaptcha(str){
+    //     let captcha = removeSpaces($('#captcha').val());
+    //     let input = removeSpaces($('#captcha-input').val());
 
-        if(captcha == input)
-            return true
-        return false
-    }
+    //     if(captcha == input)
+    //         return true
+    //     return false
+    // }
     //RENDER CAPTCHA
     function renderCaptcha(){
         if($('.captcha').length){

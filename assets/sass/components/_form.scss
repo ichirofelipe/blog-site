@@ -20,6 +20,9 @@
                 border-right: 1px solid map-get($colors, "dirtywhite");
             }
         }
+        @include m(error){
+            border-color: map-get($colors, "red");
+        }
 
         &:not(:first-child){
             margin-top: 2rem;
@@ -45,6 +48,48 @@
                 }
             }
         }
+    }
+
+    @include e(checkbox){
+        input{
+            position: absolute;
+            opacity: 0;
+
+            &:checked{
+                & + .check{
+                    &:after{
+                        content: '\e807';
+                        @extend %cover-parent;
+                        font-family: fontello;
+                        font-size: 18px;
+                        margin-left: 2px;
+                        margin-top: -5px;
+                    }
+                }
+            }
+
+            & + .check{
+                    @include square(12px);
+                    position: relative;
+                    display: block;
+
+                &:before{
+                    content: '';
+                    @extend %cover-parent;
+                    border: 1px solid map-get($colors, "lightgray");
+                    border-radius: 3px;
+                    margin-top: -2px;
+                }
+            }
+        }
+        label{
+            width: fit-content;
+            cursor: pointer;
+        }
+    }
+
+    @include e(error){
+        color: map-get($colors, "red");
     }
 
     @include e(toggle-password){

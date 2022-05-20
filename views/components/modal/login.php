@@ -5,14 +5,14 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">User Login</h3>
             </div>
-            <form method="POST" action="/login">
+            <form class="form--validate" method="POST" action="/login">
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
-                    <input type="text" name="username" placeholder="Username *">
+                    <input data-fieldname="Username" data-rules="required" type="text" name="username" placeholder="Username *">
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input class="password" id="password" type="password" name="password" placeholder="Password *">
+                    <input data-fieldname="Password" data-rules="required" class="password" id="password" type="password" name="password" placeholder="Password *">
                     <label for="password" class="icon-eye form__toggle-password"></label>
                 </div>
 
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form__group">
-                    <input class="text-center" placeholder="Please enter the text displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
+                    <input data-fieldname="Captcha" data-rules="required,confirm" data-confirm="#captcha" class="text-center" placeholder="Please copy the captcha displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
                 </div>
                 <!-- <small class="d-block mt-1"><a class="color-default" href="/forgot-password">Forgot Password?</a></small> -->
 

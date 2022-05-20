@@ -4,6 +4,15 @@
     else
         $page = "home";
 
+    if(count(explode('/',$page)) > 1){
+        $page = explode('/',$page);
+        switch($page[0]){
+            case "controller":
+                require_once("controller/signup.php");
+                break;
+        }
+    }
+
     include_once("views/includes/header.php");
     
     switch($page){
