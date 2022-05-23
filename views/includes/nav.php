@@ -18,16 +18,29 @@
                     <a href="/contact">Contact</a>
                 </li>
                 <li id="account" class="px-1 position-relative d-none d-sm-block">
-                    <a data-toggle="modal" data-target="login" href="javascript:void(0)"><span class="icon-user-1 overflow-hidden"></span></a>
-                    <!-- <ul class="dropdown">
+                    
+                    <a class="d-flex flex-column align-items-center" data-toggle="modal" data-target="login" href="javascript:void(0)">
+                        <span class="icon-user-1 overflow-hidden"></span>
+                        <?php if(isset($user)){ ?>
+                        <p class="m-0 badge"><?= $user['username'] ?></p>
+                        <?php } ?>
+                    </a>
+                    <?php if(isset($user)){ ?>
+                    <ul class="dropdown">
                         <li>
-                            <a data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
+                            <a href="/post">Create Post</a>
                         </li>
                         <li>
-                            <a data-toggle="modal" data-target="signup" href="javascript:void(0)">Sign Up</a>
+                            <form method="POST" action="/controller/logout">
+                                <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>">
+                                <input type="hidden" name="user" value="<?= $user['id'] ?>">
+                                <button type="submit">Logout</button>
+                            </form>
                         </li>
-                    </ul> -->
+                    </ul>
+                    <?php } ?>
                 </li>
+                
                 <li class="px-1 d-flex d-sm-none">
                     <a data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
                 </li>

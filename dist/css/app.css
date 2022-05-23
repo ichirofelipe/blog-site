@@ -277,6 +277,11 @@ img {
   .d-sm-block {
     display: block !important;
   }
+  .d-sm-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
   .d-sm-none {
     display: none !important;
   }
@@ -587,9 +592,14 @@ img {
   background: #343a40;
 }
 
-.dropdown li a {
+.dropdown li a, .dropdown li button {
   padding: 7px 15px;
+  width: 100%;
   display: block;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 16px;
 }
 
 .modal {
@@ -758,6 +768,7 @@ img {
 
 .form__submit {
   border: none;
+  border-radius: 5px;
   background: #343a40;
   color: #FFFFFF;
   width: 100%;
@@ -856,13 +867,29 @@ img {
           transform: translateY(10px);
 }
 
+.badge {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #343a40;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  text-transform: capitalize;
+  max-width: 40px;
+  overflow: hidden;
+}
+
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#navigation a {
+#navigation a, #navigation button {
   cursor: pointer;
   text-decoration: none;
   color: #a6a6a6;
@@ -872,7 +899,7 @@ nav ul {
   white-space: nowrap;
 }
 
-#navigation a:hover {
+#navigation a:hover, #navigation button:hover {
   color: #FFFFFF;
 }
 
@@ -893,7 +920,7 @@ nav ul {
   margin-left: 2px;
 }
 
-#account.active span {
+#account.active span, #account.active p {
   color: #FFFFFF;
 }
 

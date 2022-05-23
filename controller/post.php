@@ -2,7 +2,7 @@
 
 require_once('base/db_config.php');
 require_once('helper/validation.php');
-require_once('rules/signup_rules.php');
+require_once('rules/post_rules.php');
 
 $requests = $_POST;
 
@@ -12,23 +12,21 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //VALIDATE REQUESTS
-    $data = validateRequests($requests, $rules, true);
+    $data = validateRequests($requests, $rules);
     if(count($data['errors'])){
         closeConn();
         dd($data['errors']);
-        echo json_encode(array('code' => '400', 'message' => 'Registration Failed   !', 'errors' => $data['errors']));
+        echo json_encode(array('code' => '400', 'message' => 'Submittion Failed   !', 'errors' => $data['errors']));
         header('Location: /');
         exit;
     }
     unset($data['errors']);
-
+    
     try{
-        if($query = insertQuery($data, 'users', true)){
-            
-            generateToken($query);
-            
+        if($query = insertQuery($data, 'posts')){
+
             closeConn();
-            echo json_encode(array('code' => '201', 'message' => 'Registered Successfully!'));
+            echo json_encode(array('code' => '201', 'message' => 'Post Submitted Successfully!'));
             header('Location: /');
         }
     
@@ -37,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /');
     }
     catch(Exception $e){
+        dd($e);
         logInfo($e);
         closeConn();
         echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));

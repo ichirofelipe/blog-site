@@ -2,7 +2,7 @@
 
 require_once('base/db_config.php');
 require_once('helper/validation.php');
-require_once('rules/signup_rules.php');
+require_once('rules/login_rules.php');
 
 $requests = $_POST;
 
@@ -12,23 +12,24 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //VALIDATE REQUESTS
-    $data = validateRequests($requests, $rules, true);
+    $data = validateRequests($requests, $rules);
+
     if(count($data['errors'])){
         closeConn();
         dd($data['errors']);
-        echo json_encode(array('code' => '400', 'message' => 'Registration Failed   !', 'errors' => $data['errors']));
+        echo json_encode(array('code' => '400', 'message' => 'Login Failed!', 'errors' => $data['errors']));
         header('Location: /');
         exit;
     }
     unset($data['errors']);
-
+    
     try{
-        if($query = insertQuery($data, 'users', true)){
-            
+        if($query = userVerificationQuery($data, true)){
+
             generateToken($query);
             
             closeConn();
-            echo json_encode(array('code' => '201', 'message' => 'Registered Successfully!'));
+            echo json_encode(array('code' => '201', 'message' => 'Logged in Successfully!'));
             header('Location: /');
         }
     

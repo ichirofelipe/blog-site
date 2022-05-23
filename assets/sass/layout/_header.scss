@@ -7,7 +7,7 @@ nav{
 }
 
 #navigation{
-    a{
+    a,button{
         cursor: pointer;
         text-decoration: none;
         color: lighten(map-get($colors, "default"), 45%);
@@ -37,7 +37,7 @@ nav{
         }
     }
     &.active{
-        span{
+        span,p{
             color: map-get($colors, "white");
         }
     }

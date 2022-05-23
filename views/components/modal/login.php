@@ -5,7 +5,8 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">User Login</h3>
             </div>
-            <form class="form--validate" method="POST" action="/login">
+            <form class="form--validate" method="POST" action="/controller/login">
+                <!-- <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>"> -->
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
                     <input data-fieldname="Username" data-rules="required" type="text" name="username" placeholder="Username *">
