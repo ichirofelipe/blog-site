@@ -12,12 +12,19 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //VALIDATE REQUESTS
+    session_start();
+
     $data = validateRequests($requests, $rules);
     if(count($data['errors'])){
         closeConn();
         dd($data['errors']);
-        echo json_encode(array('code' => '400', 'message' => 'Submittion Failed   !', 'errors' => $data['errors']));
-        header('Location: /');
+
+        // echo json_encode(array('code' => '400', 'message' => 'Submission Failed!', 'errors' => $data['errors']));
+        $_SESSION['alert'] = [
+            'status'    => '400',
+            'msg'       => 'Submission Failed!',
+        ];
+        header('Location: /post');
         exit;
     }
     unset($data['errors']);
@@ -26,23 +33,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($query = insertQuery($data, 'posts')){
 
             closeConn();
-            echo json_encode(array('code' => '201', 'message' => 'Post Submitted Successfully!'));
-            header('Location: /');
+            // echo json_encode(array('code' => '201', 'message' => 'Submitted Successfully!'));
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Submitted Successfully!',
+            ];
+
+            header('Location: /post');
         }
     
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
-        header('Location: /');
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+
+        header('Location: /post');
     }
     catch(Exception $e){
-        dd($e);
         logInfo($e);
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
-        header('Location: /');
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+
+        header('Location: /post');
     }
 }
 
-header('Location: /');
+header('Location: /post');
  
 ?>

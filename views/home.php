@@ -6,19 +6,26 @@
 
         <section>
             <?php if($posts){ ?>
-                <?php foreach($posts as $post){ ?>
-                    <?php include 'components/card.php'; ?>
-                <?php } ?>
+                <?php 
+
+                    includeWithVariables(dirname(__FILE__).'/components/card.php', 
+                        array(
+                            'posts' => $posts
+                        )
+                    );
+
+                    includeWithVariables(dirname(__FILE__).'/components/pagination.php', 
+                        array(
+                            'currentPage' => $postPage,
+                            'pagination' => $pagination, 
+                            'url' => '/'
+                        )
+                    );
+                    
+                ?>
+            <?php }else{ ?>
+                <p class="title alert-default">No news to display.</p>
             <?php } ?>
-
-
-            <?php for($i=0; $i<3; $i++){
-                include 'components/card.php';
-            } ?>
-            
-            <?php
-                include 'components/pagination.php';
-            ?>
         </section>
     </div>
 

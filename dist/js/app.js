@@ -5,6 +5,7 @@ $(function() {
     \*=====================*/
 
     renderCaptcha();
+    animateAlert();
 
     /*=====================*\
         END OF ONLOAD
@@ -24,6 +25,8 @@ $(function() {
     });
     //DROPDOWN
     $(".dropdown").parent().on('click', function (e) {
+        $(this).siblings().find('.dropdown').removeClass('active');
+        $(this).siblings().find('.dropdown').parent().removeClass('active');
         e.stopPropagation();
         $(this).toggleClass('active');
         $(this).find('.dropdown').toggleClass('active');
@@ -255,6 +258,25 @@ $(function() {
 
     /*=====================*\
         END OF CAPTCHA
+    \*=====================*/
+
+
+    
+
+
+
+    /*=====================*\
+             ALERT
+    \*=====================*/
+
+    function animateAlert(){
+        if($('.alert__notify').length){
+            $('.alert__notify').delay(2000).remove(500);
+        }
+    }
+
+    /*=====================*\
+           END OF ALERT
     \*=====================*/
 
 });

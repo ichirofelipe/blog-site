@@ -5,18 +5,18 @@
                 <div class="heading">
                     <h1 class="title">Contact Us</h1>
                 </div>
-                <form class="form--validate" method="POST" action="/contact">
+                <form class="form--validate" method="POST" action="/controller/contact">
                     <div class="form__group">
-                        <input data-fieldname="Full Name" data-rules="required" type="text" name="name" placeholder="Full Name *">
+                        <input data-fieldname="Full Name" data-rules="required,max:50" type="text" name="name" placeholder="Full Name *">
                     </div>
                     <div class="form__group">
-                        <input data-fieldname="E-mail" data-rules="required" type="email" name="email" placeholder="E-mail *">
+                        <input data-fieldname="E-mail" data-rules="required,max:50" type="email" name="email" placeholder="E-mail *">
                     </div>
                     <div class="form__group">
-                        <input type="text" name="phone" placeholder="Phone Number">
+                        <input data-fieldname="Phone Number" data-rules="max:25" type="text" name="phone" placeholder="Phone Number">
                     </div>
                     <div class="form__group">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                        <textarea data-fieldname="Short Description" data-rules="required,max:2048" name="message" id="" cols="30" rows="10" placeholder="Message *"></textarea>
                     </div>
 
                     <div class="divider"></div>

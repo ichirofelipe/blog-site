@@ -5,7 +5,7 @@
         $page = $_GET['page'];
     else
         $page = "home";
-
+        
     if(count(explode('/',$page)) > 1){
         $page = explode('/',$page);
         
@@ -23,12 +23,21 @@
                 case "post":
                     require_once("controller/post.php");
                     break;
+                case "contact":
+                    require_once("controller/contact.php");
+                    break;
             }
         }
-        
     }
 
+    
     include_once("views/includes/header.php");
+
+    session_start();
+    if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
+        include_once("views/includes/alert.php");
+        // unset($_SESSION['alert']);
+    }
     
     switch($page){
         case "about":
@@ -41,13 +50,39 @@
             include_once("views/terms.php");
             break;
         case "post":
-            if(!$user)
-                include_once("views/home.php");
+            if(!$user){
+                header('Location: /');
+            }
             include_once("views/post.php");
             break;
         default:
             require_once("controller/post_list.php");
             include_once("views/home.php");
             break;
+    }
+
+
+    function includeWithVariables($filePath, $variables = array(), $print = true)
+    {
+        $output = NULL;
+        
+        if(file_exists($filePath)){
+            // Extract the variables to a local namespace
+            extract($variables);
+
+            // Start output buffering
+            ob_start();
+
+            // Include the template file
+            include $filePath;
+
+            // End buffering and return its contents
+            $output = ob_get_clean();
+        }
+        if ($print) {
+            print $output;
+        }
+        return $output;
+
     }
 ?>

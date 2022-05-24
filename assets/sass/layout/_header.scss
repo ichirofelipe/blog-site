@@ -99,7 +99,7 @@ nav{
                 font-size: 20px;
             }
         }
-        a{
+        a,button{
             width: 100%;
             display: block;
             color: map-get($colors, "white");

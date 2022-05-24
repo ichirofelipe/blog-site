@@ -1,0 +1,28 @@
+.alert{
+    &-default{
+        background: map-get($colors, "dimwhite");
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    @include e(notify){
+        position: fixed;
+        margin-top: 15px;
+        right: 15px;
+        border-radius: 5px;
+        background: map-get($colors, "dimwhite");
+        padding: 10px 15px;
+        box-shadow: 0px 2px 8px 0px map-get($colors, "lightgray");
+        font-weight: bold;
+    }
+
+    @include m(success){
+        background: map-get($colors, "bluegray");
+        color: map-get($colors, "white");
+    }
+
+    @include m(error){
+        background: map-get($colors, "red");
+        color: map-get($colors, "white");
+    }
+}

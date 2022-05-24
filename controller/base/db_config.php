@@ -27,10 +27,7 @@ function insertQuery($data, $table, $getLastId = false){
 
   foreach($data as $column => $value){
     array_push($sql['columns'], $column);
-    //CHECK IF NOT VALUE IS NUMERIC
-    if(!is_numeric($value))
-      $value = "'".$value."'";
-    array_push($sql['values'], $value);
+    array_push($sql['values'], "'".$value."'");
   }
   $query = "INSERT INTO $table (".implode(',',$sql['columns']).")
   VALUES (".implode(',',$sql['values']).")";
@@ -73,12 +70,23 @@ function findQuery($id, $table){
   return $result->fetch_assoc();
 }
 
-function selectQuery($table){
+function selectQuery($table, $skip = null, $limit = 0){
   global $conn;
 
-  $query = "SELECT * FROM $table";
+  $query = "SELECT * FROM $table ORDER BY id DESC LIMIT ".($skip?$skip.',':'')."".$limit;
+  
   $result = $conn->query($query);
 
+  return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function countQuery($table){
+  global $conn;
+
+  $query = "SELECT COUNT(*) as count FROM $table";
+  
+  $result = $conn->query($query);
+  
   return $result->fetch_assoc();
 }
 

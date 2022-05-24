@@ -11,10 +11,10 @@
                 </div>
             </div>
             <ul id="menu" class="align-items-center d-flex">
-                <li class="px-1">
+                <li class="px-1 position-relative">
                     <a href="/about">About us</a>
                 </li>
-                <li class="px-1">
+                <li class="px-1 position-relative">
                     <a href="/contact">Contact</a>
                 </li>
                 <li id="account" class="px-1 position-relative d-none d-sm-block">
@@ -34,19 +34,31 @@
                             <form method="POST" action="/controller/logout">
                                 <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>">
                                 <input type="hidden" name="user" value="<?= $user['id'] ?>">
-                                <button type="submit">Logout</button>
+                                <button class="text-plain" type="submit">Logout</button>
                             </form>
                         </li>
                     </ul>
                     <?php } ?>
                 </li>
-                
-                <li class="px-1 d-flex d-sm-none">
-                    <a data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
-                </li>
-                <li class="px-1 d-flex d-sm-none">
-                    <a data-toggle="modal" data-target="signup" href="javascript:void(0)">Sign Up</a>
-                </li>
+                <?php if(!isset($user)){ ?>
+                    <li class="px-1 d-flex d-sm-none">
+                        <a data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
+                    </li>
+                    <li class="px-1 d-flex d-sm-none">
+                        <a data-toggle="modal" data-target="signup" href="javascript:void(0)">Sign Up</a>
+                    </li>
+                <?php }else{ ?>
+                    <li class="px-1 d-flex d-sm-none">
+                        <a href="/post">Create Post</a>
+                    </li>
+                    <li class="px-1 d-flex d-sm-none">
+                        <form class="w-full" method="POST" action="/controller/logout">
+                            <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>">
+                            <input type="hidden" name="user" value="<?= $user['id'] ?>">
+                            <button class="text-plain" type="submit">Logout</button>
+                        </form>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
