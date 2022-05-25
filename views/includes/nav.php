@@ -19,7 +19,7 @@
                 </li>
                 <li id="account" class="px-1 position-relative d-none d-sm-block">
                     
-                    <a class="d-flex flex-column align-items-center" data-toggle="modal" data-target="login" href="javascript:void(0)">
+                    <a class="d-flex flex-column align-items-center" data-captcha="<?= $captcha ?>" data-toggle="modal" data-target="login" href="javascript:void(0)">
                         <span class="icon-user-1 overflow-hidden"></span>
                         <?php if(isset($user)){ ?>
                         <p class="m-0 badge"><?= $user['username'] ?></p>
@@ -32,8 +32,6 @@
                         </li>
                         <li>
                             <form method="POST" action="/controller/logout">
-                                <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>">
-                                <input type="hidden" name="user" value="<?= $user['id'] ?>">
                                 <button class="text-plain" type="submit">Logout</button>
                             </form>
                         </li>
@@ -42,10 +40,10 @@
                 </li>
                 <?php if(!isset($user)){ ?>
                     <li class="px-1 d-flex d-sm-none">
-                        <a data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
+                        <a data-captcha="<?= $captcha ?>" data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
                     </li>
                     <li class="px-1 d-flex d-sm-none">
-                        <a data-toggle="modal" data-target="signup" href="javascript:void(0)">Sign Up</a>
+                        <a data-captcha="<?= $captcha ?>" data-toggle="modal" data-target="signup" href="javascript:void(0)">Sign Up</a>
                     </li>
                 <?php }else{ ?>
                     <li class="px-1 d-flex d-sm-none">
@@ -53,8 +51,6 @@
                     </li>
                     <li class="px-1 d-flex d-sm-none">
                         <form class="w-full" method="POST" action="/controller/logout">
-                            <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>">
-                            <input type="hidden" name="user" value="<?= $user['id'] ?>">
                             <button class="text-plain" type="submit">Logout</button>
                         </form>
                     </li>

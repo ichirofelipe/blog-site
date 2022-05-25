@@ -1,4 +1,9 @@
 <?php
+
+    /*=====================*\
+           CRONTROLLER
+    \*=====================*/
+
     require_once('controller/authentication.php');
 
     if(isset($_GET['page']) && $_GET['page'])
@@ -10,33 +15,43 @@
         $page = explode('/',$page);
         
         if($page[0] == 'controller'){
+            $dir = "controller/";
             switch($page[1]){
                 case "signup":
-                    require_once("controller/signup.php");
+                    require_once($dir."signup.php");
                     break;
                 case "logout":
-                    require_once("controller/logout.php");
+                    require_once($dir."logout.php");
                     break;
                 case "login":
-                    require_once("controller/login.php");
+                    require_once($dir."login.php");
                     break;
                 case "post":
-                    require_once("controller/post.php");
+                    require_once($dir."post.php");
                     break;
                 case "contact":
-                    require_once("controller/contact.php");
+                    require_once($dir."contact.php");
                     break;
             }
         }
     }
 
+    /*=====================*\
+       END OF CRONTROLLER
+    \*=====================*/
+
+    
+
+
+    /*=====================*\
+             VIEWS
+    \*=====================*/
     
     include_once("views/includes/header.php");
 
-    session_start();
     if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
         include_once("views/includes/alert.php");
-        // unset($_SESSION['alert']);
+        unset($_SESSION['alert']);
     }
     
     switch($page){
@@ -60,6 +75,17 @@
             include_once("views/home.php");
             break;
     }
+
+    /*=====================*\
+           END OF VIEWS
+    \*=====================*/
+
+
+
+
+    /*=====================*\
+            FUNCTIONS
+    \*=====================*/
 
 
     function includeWithVariables($filePath, $variables = array(), $print = true)
@@ -85,4 +111,8 @@
         return $output;
 
     }
+
+    /*=====================*\
+         END OF FUNCTIONS
+    \*=====================*/
 ?>

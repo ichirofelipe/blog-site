@@ -13,5 +13,5 @@
     </head>
 
     <body class="d-flex flex-column justify-between">
-        <div class="content">
+        <div class="content pt-6">
             <?php include 'nav.php' ?>

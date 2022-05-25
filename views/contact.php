@@ -18,7 +18,8 @@
                     <div class="form__group">
                         <textarea data-fieldname="Short Description" data-rules="required,max:2048" name="message" id="" cols="30" rows="10" placeholder="Message *"></textarea>
                     </div>
-
+                    
+                    <?php if(empty($captcha)){ ?>
                     <div class="divider"></div>
 
                     <div class="bg-dimwhite form__group m-0">
@@ -31,6 +32,7 @@
                     <div class="form__group">
                         <input data-fieldname="Captcha" data-rules="required,confirm" data-confirm="#captcha2" class="text-center" placeholder="Please copy the captcha displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
                     </div>
+                    <?php } ?>
                     <!-- <small class="d-block mt-1"><a class="color-default" href="/forgot-password">Forgot Password?</a></small> -->
 
                     <div class="form__actions">

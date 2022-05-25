@@ -43,13 +43,13 @@ function validateRequests($requests, $rules, $encrypt = false){
     return $data;
 }
 
-function generateToken($id){
+function generateToken($id, $name = "_token", $exp = 86400){
     $headers = array('alg'=>'HS256','typ'=>'JWT');
-    $payload = array('id'=>$id, 'exp' => time() + 1200000);
+    $payload = array('id'=>$id, 'exp' => time() + $exp);
 
     $jwt = generate_jwt($headers, $payload);
 
-    setcookie('_token', $jwt, time() + 1200000, '/');
+    setcookie($name, $jwt, time() + $exp, '/');
 }
 
 

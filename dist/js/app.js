@@ -157,6 +157,7 @@ $(function() {
     //TOGGLE MODAL
     $(document).on('click', "[data-toggle]", function (){
         $to_toggle = $(this).data('toggle');
+        var captcha = $(this).data('captcha');
 
         if($to_toggle == 'modal'){
             if($('#modal').length)
@@ -166,6 +167,8 @@ $(function() {
             
             $.ajax({
                 url: `../../views/components/modal/${$target}.php`,
+                type: 'POST',
+                data: {captcha: captcha},
                 success: function(html){
                     $('body .content').append(html);
                     $('body,html').addClass('disable');
@@ -271,7 +274,13 @@ $(function() {
 
     function animateAlert(){
         if($('.alert__notify').length){
-            $('.alert__notify').delay(2000).remove(500);
+            $('.alert__notify').addClass('active').delay(4000).queue(function(nxt) {
+                $(this).addClass('done').delay(1000).queue(function(nxt2) {
+                    $(this).remove();
+                    nxt2();
+                });
+                nxt();
+            });
         }
     }
 

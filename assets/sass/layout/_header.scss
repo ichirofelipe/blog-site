@@ -7,6 +7,11 @@ nav{
 }
 
 #navigation{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 14;
+
     a,button{
         cursor: pointer;
         text-decoration: none;

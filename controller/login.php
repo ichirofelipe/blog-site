@@ -17,7 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(count($data['errors'])){
         closeConn();
         dd($data['errors']);
-        echo json_encode(array('code' => '400', 'message' => 'Login Failed!', 'errors' => $data['errors']));
+        // echo json_encode(array('code' => '400', 'message' => 'Login Failed!', 'errors' => $data['errors']));
+        $_SESSION['alert'] = [
+            'status'    => '400',
+            'msg'       => 'Login Failed!',
+        ];
+
         header('Location: /');
         exit;
     }
@@ -27,20 +32,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($query = userVerificationQuery($data, true)){
 
             generateToken($query);
+            if($requests['captcha-input']){
+                generateToken($requests['captcha-input'], '_captcha', 60);
+            }
             
             closeConn();
-            echo json_encode(array('code' => '201', 'message' => 'Logged in Successfully!'));
+            // echo json_encode(array('code' => '201', 'message' => 'Logged in Successfully!'));
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Logged in Successfully!',
+            ];
+
             header('Location: /');
         }
     
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+
         header('Location: /');
     }
     catch(Exception $e){
         logInfo($e);
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+
         header('Location: /');
     }
 }

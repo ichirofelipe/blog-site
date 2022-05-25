@@ -15,8 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = validateRequests($requests, $rules, true);
     if(count($data['errors'])){
         closeConn();
-        dd($data['errors']);
-        echo json_encode(array('code' => '400', 'message' => 'Registration Failed   !', 'errors' => $data['errors']));
+        // echo json_encode(array('code' => '400', 'message' => 'Registration Failed!', 'errors' => $data['errors']));
+        $_SESSION['alert'] = [
+            'status'    => '400',
+            'msg'       => 'Registration Failed!',
+        ];
+
         header('Location: /');
         exit;
     }
@@ -28,18 +32,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             generateToken($query);
             
             closeConn();
-            echo json_encode(array('code' => '201', 'message' => 'Registered Successfully!'));
+            // echo json_encode(array('code' => '201', 'message' => 'Registered Successfully!'));
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Registered Successfully!',
+            ];
+
             header('Location: /');
         }
     
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+
         header('Location: /');
     }
     catch(Exception $e){
         logInfo($e);
         closeConn();
-        echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        // echo json_encode(array('code' => '500', 'message' => 'Error Creating Request!'));
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Error Creating Request!',
+        ];
+        
         header('Location: /');
     }
 }

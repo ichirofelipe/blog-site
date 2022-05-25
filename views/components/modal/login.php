@@ -17,23 +17,25 @@
                     <label for="password" class="icon-eye form__toggle-password"></label>
                 </div>
 
-                <div class="divider"></div>
+                <?php if(empty($_POST['captcha'])){ ?>
+                    <div class="divider"></div>
 
-                <div class="bg-dimwhite form__group m-0">
-                    <span title="reload" class="captcha__refresh icon-cw"></span>
-                    <div class="catcha__container">
-                        <input class="text-center captcha" type="text" id="captcha" name="captcha" readonly disabled oncopy="return false" oncut="return false">
+                    <div class="bg-dimwhite form__group m-0">
+                        <span title="reload" class="captcha__refresh icon-cw"></span>
+                        <div class="catcha__container">
+                            <input class="text-center captcha" type="text" id="captcha" name="captcha" readonly disabled oncopy="return false" oncut="return false">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form__group">
-                    <input data-fieldname="Captcha" data-rules="required,confirm" data-confirm="#captcha" class="text-center" placeholder="Please copy the captcha displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
-                </div>
+                    <div class="form__group">
+                        <input data-fieldname="Captcha" data-rules="required,confirm" data-confirm="#captcha" class="text-center" placeholder="Please copy the captcha displayed" type="text" id="captcha-input" name="captcha-input" onpaste="return false">
+                    </div>
+                <?php } ?>
                 <!-- <small class="d-block mt-1"><a class="color-default" href="/forgot-password">Forgot Password?</a></small> -->
 
                 <div class="form__actions">
                     <button type="submit" class="form__submit d-block">Continue</button>
-                    <a class="color-default d-block mt-1" data-toggle="modal" data-target="signup" href="javascript:void(0)">Create New Account</a>
+                    <a class="color-default d-block mt-1" data-captcha="<?= $_POST['captcha'] ?>" data-toggle="modal" data-target="signup" href="javascript:void(0)">Create New Account</a>
                 </div>
             </form>
         </div>

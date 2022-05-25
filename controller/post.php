@@ -12,7 +12,6 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //VALIDATE REQUESTS
-    session_start();
 
     $data = validateRequests($requests, $rules);
     if(count($data['errors'])){
