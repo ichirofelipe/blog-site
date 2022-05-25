@@ -1,8 +1,6 @@
 <?php
 
-    /*=====================*\
-           CRONTROLLER
-    \*=====================*/
+    
 
     require_once('controller/authentication.php');
 
@@ -10,9 +8,15 @@
         $page = $_GET['page'];
     else
         $page = "home";
-        
-    if(count(explode('/',$page)) > 1){
-        $page = explode('/',$page);
+    
+    $tmpPage = explode('/',$page);
+    
+    if(count($tmpPage) > 1 || $tmpPage[0] == 'admin'){
+        $page = $tmpPage;
+
+        /*=====================*\
+               CRONTROLLER
+        \*=====================*/
         
         if($page[0] == 'controller'){
             $dir = "controller/";
@@ -34,51 +38,85 @@
                     break;
             }
         }
-    }
-
-    /*=====================*\
-       END OF CRONTROLLER
-    \*=====================*/
-
-    
 
 
-    /*=====================*\
-             VIEWS
-    \*=====================*/
-    
-    include_once("views/includes/header.php");
+        /*=====================*\
+                 ADMIN
+        \*=====================*/
 
-    if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
-        include_once("views/includes/alert.php");
-        unset($_SESSION['alert']);
-    }
-    
-    switch($page){
-        case "about":
-            include_once("views/about.php");
-            break;
-        case "contact":
-            include_once("views/contact.php");
-            break;
-        case "terms":
-            include_once("views/terms.php");
-            break;
-        case "post":
-            if(!$user){
-                header('Location: /');
+        
+        if($page[0] == 'admin'){
+            include_once("views/admin/includes/header.php");
+            
+            $dir = "views/admin/";
+
+            if(!$admin){
+                require_once($dir."login.php");
+                exit;
             }
-            include_once("views/post.php");
-            break;
-        default:
-            require_once("controller/post_list.php");
-            include_once("views/home.php");
-            break;
-    }
+            if(isset($page[1])){
+                switch($page[1]){
+                    case "news":
+                        require_once($dir."posts.php");
+                        break;
+                    case "users":
+                        require_once($dir."users.php");
+                        break;
+                    case "contacts":
+                        require_once($dir."contacts.php");
+                        break;
+                    case "login":
+                        require_once($dir."login.php");
+                        break;
+                    default:
+                        require_once($dir."posts.php");
+                        break;
+                }
+            }
+            else{
+                header('Location: /admin/news');
+            }
+        }
 
-    /*=====================*\
-           END OF VIEWS
-    \*=====================*/
+    }
+    else{
+        /*=====================*\
+                FRONT
+        \*=====================*/
+        
+        include_once("views/includes/header.php");
+
+        if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
+            include_once("views/includes/alert.php");
+            unset($_SESSION['alert']);
+        }
+        
+        switch($page){
+            case "about":
+                include_once("views/about.php");
+                break;
+            case "contact":
+                include_once("views/contact.php");
+                break;
+            case "terms":
+                include_once("views/terms.php");
+                break;
+            case "post":
+                if(!$user){
+                    header('Location: /');
+                }
+                include_once("views/post.php");
+                break;
+            default:
+                require_once("controller/post_list.php");
+                include_once("views/home.php");
+                break;
+        }
+    }
+    
+
+
+    
 
 
 
@@ -86,7 +124,6 @@
     /*=====================*\
             FUNCTIONS
     \*=====================*/
-
 
     function includeWithVariables($filePath, $variables = array(), $print = true)
     {
@@ -111,8 +148,4 @@
         return $output;
 
     }
-
-    /*=====================*\
-         END OF FUNCTIONS
-    \*=====================*/
 ?>

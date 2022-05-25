@@ -1,0 +1,11 @@
+.icon{
+    &-user-1:before {
+        content: '\e801';
+    }
+    &-vcard:before {
+        content: '\e808';
+    }
+    &-newspaper:before {
+        content: '\f1ea';
+    }
+}

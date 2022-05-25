@@ -10,6 +10,15 @@
     opacity: 0;
     pointer-events: none;
 
+    @include m(align-right){
+        left: 0%;
+        transform: translate(calc(-50% - 45px), 100%);
+
+        &:before{
+            
+        }
+    }
+
     &.active{
         opacity: 1;
         pointer-events: all;
@@ -20,7 +29,7 @@
         content: '';
         position: absolute;
         top: 0px;
-        left: 50%;
+        right: 0%;
         transform: translate(-50%, -100%);
         border-left: 10px solid transparent;
         border-bottom: 10px solid map-get($colors, "white");

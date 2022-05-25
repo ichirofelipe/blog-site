@@ -7,6 +7,7 @@ header("Access-Control-Allow-Origin: *");
 
 $user = null;
 $captcha = null;
+$admin = null;
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     /*=====================*\
             USER AUTH

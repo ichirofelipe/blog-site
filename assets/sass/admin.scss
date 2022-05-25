@@ -13,18 +13,11 @@
 @import "frontend/base/sizing";
 
 // Components
-@import "frontend/components/icons";
-@import "frontend/components/card";
-@import "frontend/components/pagination";
 @import "frontend/components/dropdown";
-@import "frontend/components/modal";
-@import "frontend/components/form";
-@import "frontend/components/captcha";
-@import "frontend/components/divider";
+@import "admin/components/icons";
 @import "frontend/components/burger";
-@import "frontend/components/badge";
-@import "frontend/components/alert";
+@import "frontend/components/card";
 
 // Layouts
-@import "frontend/layout/footer";
-@import "frontend/layout/header";
+@import "admin/layout/footer";
+@import "admin/layout/header";

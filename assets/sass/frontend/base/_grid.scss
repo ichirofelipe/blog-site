@@ -4,7 +4,11 @@
     margin-left:auto;
     margin-right:auto;
     padding-left:15px;
-    padding-right:15px
+    padding-right:15px;
+
+    @include m(full){
+        max-width: unset !important;
+    }
 }
 @media (min-width: $breakpoint-sm){
     .container{
@@ -33,6 +37,9 @@
 .flex{
     &-column{
         flex-direction: column;
+    }
+    &-1{
+        flex: 1;
     }
 }
 

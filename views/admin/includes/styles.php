@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="../dist/css/admin.css?v=<?=date('YmHdis')?>">
