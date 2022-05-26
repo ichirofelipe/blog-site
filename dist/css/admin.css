@@ -939,6 +939,7 @@ img {
   text-align: left;
   padding: 15px;
   background: #dbdbdb;
+  text-transform: capitalize;
 }
 
 .table tbody tr {

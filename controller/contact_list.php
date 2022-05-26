@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $limit = $toShow??9;
     $pages = $pageDisplay??5;
     $skip = $limit * ($listPage - 1);
-    $posts = selectQuery('posts', $skip, $limit, 'id,title,url,description,created_at');
-    $columns = getColumns($posts[0]);
-    $totalPosts = countQuery('posts');
-    $pagination = paginate($totalPosts['count'], $listPage, $limit, $pages);
+    $contacts = selectQuery('contacts', $skip, $limit, 'id,name,email,phone,message,created_at');
+    $columns = getColumns($contacts[0]);
+    $totalContacts = countQuery('contacts');
+    $pagination = paginate($totalContacts['count'], $listPage, $limit, $pages);
 }
  
 ?>

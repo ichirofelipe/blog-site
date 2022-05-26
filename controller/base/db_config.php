@@ -72,10 +72,10 @@ function findQuery($id, $table){
   return $result->fetch_assoc();
 }
 
-function selectQuery($table, $skip = null, $limit = 0){
+function selectQuery($table, $skip = null, $limit = 0, $toSelect = '*'){
   global $conn;
 
-  $query = "SELECT * FROM $table ORDER BY id DESC LIMIT ".($skip?$skip.',':'')."".$limit;
+  $query = "SELECT $toSelect FROM $table ORDER BY id DESC LIMIT ".($skip?$skip.',':'')."".$limit;
   
   $result = $conn->query($query);
 

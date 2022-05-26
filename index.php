@@ -31,6 +31,9 @@
                 case "post":
                     require_once($dir."post.php");
                     break;
+                case "user":
+                    require_once($dir."user.php");
+                    break;
                 case "contact":
                     require_once($dir."contact.php");
                     break;
@@ -82,9 +85,13 @@
                         require_once($dir."posts.php");
                         break;
                     case "users":
+                        $toShow = 5;
+                        require_once("controller/user_list.php");
                         require_once($dir."users.php");
                         break;
                     case "contacts":
+                        $toShow = 5;
+                        require_once("controller/contact_list.php");
                         require_once($dir."contacts.php");
                         break;
                     default:
@@ -106,7 +113,7 @@
 
         if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
             include_once("views/includes/alert.php");
-            // unset($_SESSION['alert']);
+            unset($_SESSION['alert']);
         }
         
         switch($page){

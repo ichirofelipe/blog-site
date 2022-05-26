@@ -1,10 +1,15 @@
 <?php
 
-function paginate($totalPosts, $currentPage = 7, $perPage = 3, $pageToDisplay = 4){
+function paginate($totalPosts, $currentPage = 1, $perPage = 9, $pageToDisplay = 5){
+    //DECLARE VARIABLES
     $pagination['start'] = $pagination['end'] = $pagination['limit'] = null;
-    $tmp = $currentPage % $pageToDisplay;
-    $pagination['limit'] = $totalPosts / $perPage;
 
+    $tmp = $currentPage % $pageToDisplay;
+    
+    //GET MAX PAGES
+    $pagination['limit'] = ceil($totalPosts / $perPage);
+
+    //GET PAGINATION START AND END
     $pagination['start'] = $currentPage - ($pageToDisplay - 1);
     $pagination['end'] = (int)$currentPage;
     if($tmp != 0){

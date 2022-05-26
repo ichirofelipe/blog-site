@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $limit = $toShow??9;
     $pages = $pageDisplay??5;
     $skip = $limit * ($listPage - 1);
-    $posts = selectQuery('posts', $skip, $limit, 'id,title,url,description,created_at');
-    $columns = getColumns($posts[0]);
-    $totalPosts = countQuery('posts');
-    $pagination = paginate($totalPosts['count'], $listPage, $limit, $pages);
+    $users = selectQuery('users', $skip, $limit, 'id,username,is_admin_approved,created_at');
+    $columns = getColumns($users[0]);
+    $totalUsers = countQuery('users');
+    $pagination = paginate($totalUsers['count'], $listPage, $limit, $pages);
 }
  
 ?>

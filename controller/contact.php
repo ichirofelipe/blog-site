@@ -11,6 +11,32 @@ header("Access-Control-Allow-Methods: POST");
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if(isset($requests['delete'])){
+        $id = $requests['delete'];
+        
+        if(deleteQuery($id, 'contacts')){
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Deleted Successfully!',
+            ];
+            header('Location: '.$requests['redirect']??'/');
+        }
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Something went wrong!',
+        ];
+        header('Location: '.$requests['redirect']??'/');
+        
+    }
+
+
+
+
+
+
+
+
     //VALIDATE REQUESTS
     $data = validateRequests($requests, $rules);
     if(count($data['errors'])){
@@ -30,6 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try{
         if($query = insertQuery($data, 'contacts')){
 
+            if($requests['captcha-input']){
+                generateToken($requests['captcha-input'], '_captcha', 60);
+            }
             closeConn();
             // echo json_encode(array('code' => '201', 'message' => 'Submitted Successfully!'));
             $_SESSION['alert'] = [

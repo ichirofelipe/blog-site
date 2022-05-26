@@ -56,7 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try{
         if($query = insertQuery($data, 'posts')){
-
+            
+            if($requests['captcha-input']){
+                generateToken($requests['captcha-input'], '_captcha', 60);
+            }
+            
             closeConn();
             // echo json_encode(array('code' => '201', 'message' => 'Submitted Successfully!'));
             $_SESSION['alert'] = [

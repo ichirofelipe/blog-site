@@ -1,25 +1,23 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Url</th>
-            <th>Description</th>
+            <?php foreach($columns as $col){ ?>
+                <th><?= $col ?></th>
+            <?php } ?>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach($data as $d){ ?>
             <tr>
-                <td><?= $d['id'] ?></td>
-                <td><?= $d['title'] ?></td>
-                <td><?= $d['url'] ?></td>
-                <td><?= $d['description'] ?></td>
+                <?php foreach($d as $value){ ?>
+                    <td><?= $value ?></td>
+                <?php } ?>
                 <td>
-                    <form method="POST" action="/controller/<?= $action ?>">
+                    <form data-confirm="Are you sure you want to delete this data?" method="POST" action="/controller/<?= $action ?>">
                         <!-- <input type="hidden" name="redirect" value="<?= str_replace('bookmark/','',$_SERVER['REQUEST_URI']) ?>"> -->
                         <input type="hidden" name="redirect" value="<?= $url ?>">
-                        <button name="delete" value="<?= $d['id'] ?>" class="text-plain title--sm text-default text-clickable"><i class="icon-trash-empty"></i></button>
+                        <button type="submit" name="delete" value="<?= $d['id'] ?>" class="text-plain title--sm text-default text-clickable"><i class="icon-trash-empty"></i></button>
                     </form>
                 </td>
             </tr>

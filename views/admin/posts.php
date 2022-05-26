@@ -7,6 +7,7 @@
         <?php
             includeWithVariables(dirname(__FILE__).'/components/table.php', 
                 array(
+                    'columns' => $columns,
                     'data' => $posts,
                     'action' => 'post',
                     'url' => '/admin/news',
@@ -17,12 +18,11 @@
     <?php
         includeWithVariables(dirname(__FILE__).'/../components/pagination.php', 
             array(
-                'currentPage' => $postPage,
+                'currentPage' => $listPage,
                 'pagination' => $pagination,
                 'url' => '/admin/news'
             )
         );
-
     ?>
 </div>
 

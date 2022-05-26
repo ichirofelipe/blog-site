@@ -16,7 +16,7 @@
 
                     includeWithVariables(dirname(__FILE__).'/components/pagination.php', 
                         array(
-                            'currentPage' => $postPage,
+                            'currentPage' => $listPage,
                             'pagination' => $pagination, 
                             'url' => '/'
                         )

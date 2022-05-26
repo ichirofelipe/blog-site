@@ -11,6 +11,7 @@
         text-align: left;
         padding: 15px;
         background: darken(map-get($colors, "dimwhite"), 8%);
+        text-transform: capitalize;
     }
 
     tbody{
