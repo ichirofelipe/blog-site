@@ -76,6 +76,8 @@
             else if(isset($page[1])){
                 switch($page[1]){
                     case "news":
+                        //PAGINATION SETTINGS
+                        $toShow = 5;
                         require_once("controller/post_list.php");
                         require_once($dir."posts.php");
                         break;
@@ -144,7 +146,7 @@
     function includeWithVariables($filePath, $variables = array(), $print = true)
     {
         $output = NULL;
-
+        
         if(file_exists($filePath)){
             // Extract the variables to a local namespace
             extract($variables);

@@ -1,23 +1,13 @@
+@import "../../frontend/components/icons";
+
 .icon{
-    &-user-1:before {
-        content: '\e801';
+    &-trash-empty:before {
+        content: '\e809';
     }
     &-vcard:before {
         content: '\e808';
     }
     &-newspaper:before {
         content: '\f1ea';
-    }
-    &-lock:before {
-        content: '\e803';
-    }
-    &-eye:before {
-        content: '\e804';
-    }
-    &-eye-off:before {
-        content: '\e805';
-    }
-    &-trash-empty:before {
-        content: '\e809';
     }
 }

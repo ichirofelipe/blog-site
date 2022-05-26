@@ -11,8 +11,34 @@ header("Access-Control-Allow-Methods: POST");
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //VALIDATE REQUESTS
 
+    if(isset($requests['delete'])){
+        $id = $requests['delete'];
+        
+        if(deleteQuery($id, 'posts')){
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Deleted Successfully!',
+            ];
+            header('Location: '.$requests['redirect']??'/');
+        }
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Something went wrong!',
+        ];
+        header('Location: '.$requests['redirect']??'/');
+        
+    }
+
+
+
+
+
+
+
+
+
+    //VALIDATE REQUESTS
     $data = validateRequests($requests, $rules);
     if(count($data['errors'])){
         closeConn();

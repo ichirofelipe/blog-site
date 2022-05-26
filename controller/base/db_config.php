@@ -92,4 +92,14 @@ function countQuery($table){
   return $result->fetch_assoc();
 }
 
+function deleteQuery($id, $table){
+  global $conn;
+
+  $query = "DELETE FROM $table WHERE id = ".$id;
+
+  $result = $conn->query($query);
+
+  return $result;
+}
+
 ?>

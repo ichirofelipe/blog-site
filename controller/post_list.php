@@ -11,11 +11,12 @@ else
 header("Access-Control-Allow-Origin: *");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $limit = 9;
+    $limit = $toShow??9;
+    $pages = $pageDisplay??5;
     $skip = $limit * ($postPage - 1);
     $posts = selectQuery('posts', $skip, $limit);
     $totalPosts = countQuery('posts');
-    $pagination = paginate($totalPosts['count'], $postPage, $limit, 5);
+    $pagination = paginate($totalPosts['count'], $postPage, $limit, $pages);
 }
  
 ?>

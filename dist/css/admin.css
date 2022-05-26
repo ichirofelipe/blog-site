@@ -1,4 +1,4 @@
-.menu-btn, .form__group--append > span:not(:last-child), .form__toggle-password, .form__group--append, #account span {
+.menu-btn, .pagination, .pagination__link, .form__group--append > span:not(:last-child), .form__toggle-password, .form__group--append, #account span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,7 +114,7 @@ a:hover {
   font-weight: bold;
 }
 
-.text-default {
+.text-default, .pagination__link {
   text-decoration: none;
   color: #333333;
 }
@@ -696,16 +696,71 @@ img {
   color: #FFFFFF;
 }
 
+.pagination {
+  margin-top: 3rem;
+}
+
+.pagination__link {
+  min-width: 30px;
+  padding: 5px 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .pagination__link {
+    padding: 5px 8px;
+  }
+}
+
+.pagination__item {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.pagination__item:hover {
+  background: #343a40;
+}
+
+.pagination__item:hover a {
+  color: #FFFFFF;
+}
+
+.pagination__item.disabled, .pagination__item.static {
+  pointer-events: none;
+}
+
+.pagination__item.disabled {
+  opacity: 0.7;
+}
+
+.pagination__item.active {
+  background: #343a40;
+}
+
+.pagination__item.active a {
+  color: #FFFFFF;
+}
+
+.pagination__item:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.pagination__item:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 .icon-user-1:before {
   content: '\e801';
 }
 
-.icon-vcard:before {
-  content: '\e808';
+.icon-left-open:before {
+  content: '\e800';
 }
 
-.icon-newspaper:before {
-  content: '\f1ea';
+.icon-right-open:before {
+  content: '\e802';
 }
 
 .icon-lock:before {
@@ -720,8 +775,24 @@ img {
   content: '\e805';
 }
 
+.icon-cw:before {
+  content: '\e806';
+}
+
+.icon-check:before {
+  content: '\e807';
+}
+
 .icon-trash-empty:before {
   content: '\e809';
+}
+
+.icon-vcard:before {
+  content: '\e808';
+}
+
+.icon-newspaper:before {
+  content: '\f1ea';
 }
 
 .form__group--append > span:not(:last-child), .form__toggle-password {
