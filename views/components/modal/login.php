@@ -34,7 +34,7 @@
                 <!-- <small class="d-block mt-1"><a class="color-default" href="/forgot-password">Forgot Password?</a></small> -->
 
                 <div class="form__actions">
-                    <button type="submit" class="form__submit d-block">Continue</button>
+                    <button name="users" type="submit" class="form__submit d-block">Continue</button>
                     <a class="color-default d-block mt-1" data-captcha="<?= $_POST['captcha'] ?>" data-toggle="modal" data-target="signup" href="javascript:void(0)">Create New Account</a>
                 </div>
             </form>

@@ -2,6 +2,7 @@
     box-shadow: 0px 3px 8px 0px map-get($colors, "lightgray");
     border: 1px solid map-get($colors, "dirtywhite");
     border-radius: 5px;;
+    background: map-get($colors, "white");
 
     &:not(:first-child){
         margin-top: 3rem;

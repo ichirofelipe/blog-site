@@ -1,0 +1,34 @@
+.table{
+    border-collapse: collapse;
+    border-spacing:0;
+    width: 100%;
+
+    *{
+        border: none;
+    }
+
+    th{
+        text-align: left;
+        padding: 15px;
+        background: darken(map-get($colors, "dimwhite"), 8%);
+    }
+
+    tbody{
+        tr{
+            border-bottom: 1px solid darken(map-get($colors, "dimwhite"), 10%);
+
+            &:nth-child(even){
+                background: darken(map-get($colors, "dimwhite"), 2%);
+            }
+
+            &:hover{
+                background: darken(map-get($colors, "dimwhite"), 4%);
+                cursor: pointer;
+            }
+
+            td{
+                padding: 15px;
+            }
+        }
+    }
+}

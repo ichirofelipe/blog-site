@@ -32,7 +32,7 @@
                         </li>
                         <li>
                             <form method="POST" action="/controller/logout">
-                                <button class="text-plain" type="submit">Logout</button>
+                                <button name="user" class="text-plain" type="submit">Logout</button>
                             </form>
                         </li>
                     </ul>
@@ -51,7 +51,7 @@
                     </li>
                     <li class="px-1 d-flex d-sm-none">
                         <form class="w-full" method="POST" action="/controller/logout">
-                            <button class="text-plain" type="submit">Logout</button>
+                            <button name="user" class="text-plain" type="submit">Logout</button>
                         </form>
                     </li>
                 <?php } ?>

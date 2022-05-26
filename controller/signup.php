@@ -2,9 +2,18 @@
 
 require_once('base/db_config.php');
 require_once('helper/validation.php');
-require_once('rules/signup_rules.php');
+
 
 $requests = $_POST;
+$table = isset($requests['users'])?'users':'admin';
+$redirect = '/';
+if($table == 'admin'){
+    $redirect = '/admin';
+    require_once('rules/admin_signup_rules.php');
+}
+else{
+    require_once('rules/signup_rules.php');
+}
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -21,15 +30,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg'       => 'Registration Failed!',
         ];
 
-        header('Location: /');
+        header('Location: '.$redirect);
         exit;
     }
     unset($data['errors']);
 
     try{
-        if($query = insertQuery($data, 'users', true)){
+        if($query = insertQuery($data, $table, true)){
             
-            generateToken($query);
+            switch($table){
+                case 'admin':
+                    generateToken($query, '_admin');
+                    break;
+                default:
+                    generateToken($query);
+                    if($requests['captcha-input']){
+                        generateToken($requests['captcha-input'], '_captcha', 60);
+                    }
+                    break;
+            }
             
             closeConn();
             // echo json_encode(array('code' => '201', 'message' => 'Registered Successfully!'));
@@ -38,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'msg'       => 'Registered Successfully!',
             ];
 
-            header('Location: /');
+            header('Location: '.$redirect);
         }
     
         closeConn();
@@ -48,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg'       => 'Error Creating Request!',
         ];
 
-        header('Location: /');
+        header('Location: '.$redirect);
     }
     catch(Exception $e){
         logInfo($e);
@@ -59,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg'       => 'Error Creating Request!',
         ];
         
-        header('Location: /');
+        header('Location: '.$redirect);
     }
 }
 
-header('Location: /');
+header('Location: '.$redirect);
  
 ?>

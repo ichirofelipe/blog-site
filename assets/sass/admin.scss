@@ -14,9 +14,14 @@
 
 // Components
 @import "frontend/components/dropdown";
-@import "admin/components/icons";
 @import "frontend/components/burger";
 @import "frontend/components/card";
+@import "frontend/components/divider";
+@import "frontend/components/badge";
+@import "frontend/components/alert";
+@import "admin/components/icons";
+@import "admin/components/form";
+@import "admin/components/table";
 
 // Layouts
 @import "admin/layout/footer";

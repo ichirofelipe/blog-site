@@ -8,4 +8,16 @@
     &-newspaper:before {
         content: '\f1ea';
     }
+    &-lock:before {
+        content: '\e803';
+    }
+    &-eye:before {
+        content: '\e804';
+    }
+    &-eye-off:before {
+        content: '\e805';
+    }
+    &-trash-empty:before {
+        content: '\e809';
+    }
 }

@@ -5,7 +5,7 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">Create New Account</h3>
             </div>
-            <form class="form--validate" method="POST" action="/controller/signup.php">
+            <form class="form--validate" method="POST" action="/controller/signup">
                 <!-- <input type="hidden" name="redirect" value="<?= $_SERVER['HTTP_REFERER']??$_SERVER['REQUEST_URI'] ?>"> -->
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form__actions">
-                    <button type="submit" class="form__submit d-block">Continue</button>
+                    <button name="users" type="submit" class="form__submit d-block">Continue</button>
                     <a class="d-block mt-1 color-default" data-captcha="<?= $_POST['captcha'] ?>" data-toggle="modal" data-target="login" href="javascript:void(0)">Login</a>
                 </div>
             </form>

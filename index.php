@@ -1,7 +1,4 @@
 <?php
-
-    
-
     require_once('controller/authentication.php');
 
     if(isset($_GET['page']) && $_GET['page'])
@@ -20,6 +17,7 @@
         
         if($page[0] == 'controller'){
             $dir = "controller/";
+
             switch($page[1]){
                 case "signup":
                     require_once($dir."signup.php");
@@ -46,17 +44,39 @@
 
         
         if($page[0] == 'admin'){
+            $active = $page[1]??'';
             include_once("views/admin/includes/header.php");
+
+            if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
+                includeWithVariables('views/includes/alert.php', 
+                    array(
+                        'class' => 'alert--fixed'
+                    )
+                );
+                unset($_SESSION['alert']);
+            }
             
             $dir = "views/admin/";
 
             if(!$admin){
-                require_once($dir."login.php");
-                exit;
+                if(isset($page[1])){
+                    switch($page[1]){
+                        case "signup":
+                            require_once($dir."signup.php");
+                            break;
+                        default:
+                            require_once($dir."login.php");
+                            break;
+                    }
+                }
+                else{
+                    require_once($dir."login.php");
+                }
             }
-            if(isset($page[1])){
+            else if(isset($page[1])){
                 switch($page[1]){
                     case "news":
+                        require_once("controller/post_list.php");
                         require_once($dir."posts.php");
                         break;
                     case "users":
@@ -64,9 +84,6 @@
                         break;
                     case "contacts":
                         require_once($dir."contacts.php");
-                        break;
-                    case "login":
-                        require_once($dir."login.php");
                         break;
                     default:
                         require_once($dir."posts.php");
@@ -77,7 +94,6 @@
                 header('Location: /admin/news');
             }
         }
-
     }
     else{
         /*=====================*\
@@ -88,7 +104,7 @@
 
         if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
             include_once("views/includes/alert.php");
-            unset($_SESSION['alert']);
+            // unset($_SESSION['alert']);
         }
         
         switch($page){
@@ -128,7 +144,7 @@
     function includeWithVariables($filePath, $variables = array(), $print = true)
     {
         $output = NULL;
-        
+
         if(file_exists($filePath)){
             // Extract the variables to a local namespace
             extract($variables);

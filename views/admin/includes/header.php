@@ -12,7 +12,7 @@
 
     </head>
 
-    <body class="d-flex <?php ($admin?'flex-column':'') ?> justify-between align-items-center">
+    <body class="d-flex <?= ($admin?'flex-column':'align-items-center') ?> justify-between bg-dimwhite">
         <?php if($admin) {?>
         <div class="content d-flex flex-column flex-1">
             <?php include 'nav.php'; ?>

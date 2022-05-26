@@ -41,10 +41,10 @@ function insertQuery($data, $table, $getLastId = false){
   return $result;
 }
 
-function userVerificationQuery($data, $getLastId = false){
+function userVerificationQuery($data, $getLastId = false, $table = 'users'){
   global $conn;
 
-  $query = "SELECT * FROM users WHERE username = '".$data['username']."'";
+  $query = "SELECT * FROM $table WHERE username = '".$data['username']."'";
   $result = $conn->query($query);
   if($user = $result->fetch_assoc()){
     $verify = password_verify($data['password'], $user['password']);
@@ -55,9 +55,9 @@ function userVerificationQuery($data, $getLastId = false){
   }
 }
 
-function userExistsQuery($user){
+function userExistsQuery($user, $table = 'users'){
   global $conn;
-  $query = "SELECT * FROM users WHERE username = '".$user."'";
+  $query = "SELECT * FROM $table WHERE username = '".$user."'";
   $result = $conn->query($query);
   
   return $result->fetch_assoc();

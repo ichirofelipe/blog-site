@@ -5,6 +5,10 @@
         border-radius: 5px;
     }
 
+    @include m(fixed){
+        top: 0;
+    }
+
     @include e(notify){
         position: fixed;
         margin-top: -15px;

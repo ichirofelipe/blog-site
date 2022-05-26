@@ -32,6 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
     /*=====================*\
+            ADMIN AUTH
+    \*=====================*/
+    if(isset($_COOKIE['_admin']) && is_jwt_valid($_COOKIE['_admin'])){
+        $payload = base64_decode(explode('.', $_COOKIE['_admin'])[1]);
+        if($id = json_decode($payload)->id){
+            $admin = findQuery($id, 'admin');
+        }
+    }
+    else if(isset($_COOKIE['_admin'])){
+        unset($_COOKIE['_admin']);
+        setcookie('_admin', null, -1, '/');
+
+        $_SESSION['alert'] = [
+            'status'    => '201',
+            'msg'       => 'Loggin expired! Please login again.',
+        ];
+    }
+
+
+
+
+    /*=====================*\
             CAPTCHA
     \*=====================*/
     if(isset($_COOKIE['_captcha']) && is_jwt_valid($_COOKIE['_captcha'])){

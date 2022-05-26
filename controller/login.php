@@ -5,6 +5,10 @@ require_once('helper/validation.php');
 require_once('rules/login_rules.php');
 
 $requests = $_POST;
+$table = isset($requests['users'])?'users':'admin';
+$redirect = '/';
+if($table == 'admin')
+    $redirect = '/admin';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -16,24 +20,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(count($data['errors'])){
         closeConn();
-        dd($data['errors']);
+        
         // echo json_encode(array('code' => '400', 'message' => 'Login Failed!', 'errors' => $data['errors']));
         $_SESSION['alert'] = [
             'status'    => '400',
             'msg'       => 'Login Failed!',
         ];
 
-        header('Location: /');
+        header('Location: '.$redirect);
         exit;
     }
     unset($data['errors']);
     
     try{
-        if($query = userVerificationQuery($data, true)){
-
-            generateToken($query);
-            if($requests['captcha-input']){
-                generateToken($requests['captcha-input'], '_captcha', 60);
+        if($query = userVerificationQuery($data, true, $table)){
+            
+            switch($table){
+                case 'admin':
+                    generateToken($query, '_admin');
+                    break;
+                default:
+                    generateToken($query);
+                    if($requests['captcha-input']){
+                        generateToken($requests['captcha-input'], '_captcha', 60);
+                    }
+                    break;
             }
             
             closeConn();
@@ -42,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'status'    => '201',
                 'msg'       => 'Logged in Successfully!',
             ];
-
-            header('Location: /');
+            
+            header('Location: '.$redirect);
         }
     
         closeConn();
@@ -53,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg'       => 'Error Creating Request!',
         ];
 
-        header('Location: /');
+        header('Location: '.$redirect);
     }
     catch(Exception $e){
         logInfo($e);
@@ -64,10 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg'       => 'Error Creating Request!',
         ];
 
-        header('Location: /');
+        header('Location: '.$redirect);
     }
 }
 
-header('Location: /');
+header('Location: '.$redirect);
  
 ?>

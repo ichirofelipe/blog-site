@@ -16,10 +16,6 @@ function validateRequests($requests, $rules, $encrypt = false){
                     if(empty($data[$fillable]))
                         array_push($data['errors'], $fillable.' is required');
                     break;
-                case 'unique':
-                    if(!empty($data[$fillable]) && userExistsQuery($data[$fillable]))
-                        array_push($data['errors'], $fillable.' is already in use.');
-                    break;
                 default:
                     if(count(explode(':', $rule)) != 2)
                         break;
@@ -31,6 +27,9 @@ function validateRequests($requests, $rules, $encrypt = false){
 
                     if(strlen($data[$fillable]) < $newrule[1] && $newrule[0] == 'min')
                         array_push($data['errors'], $fillable.' must not be less than '.$newrule[1].' characters');
+                        
+                    if($newrule[0] == 'unique' && !empty($data[$fillable]) && userExistsQuery($data[$fillable], $newrule[1]))
+                        array_push($data['errors'], $fillable.' is already in use.');
 
                     break;
             }
