@@ -58,6 +58,11 @@
             align-items: center;
         }
     }
+    &-self{
+        &-center{
+            align-self: center;
+        }
+    }
 }
 
 //GRID ALIGNMENT

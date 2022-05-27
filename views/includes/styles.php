@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="dist/css/app.css?v=<?=date('YmHdis')?>">
+<link rel="stylesheet" href="/dist/css/app.css?v=<?=date('YmHdis')?>">

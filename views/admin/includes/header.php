@@ -8,7 +8,7 @@
         <title>Admin Bookmark</title>
 
         <?php include 'styles.php' ?>
-        <script src="../dist/js/jquery.js"></script>
+        <script src="/dist/js/jquery.js"></script>
 
     </head>
 

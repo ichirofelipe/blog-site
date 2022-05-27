@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'msg'       => 'Deleted Successfully!',
             ];
             header('Location: '.$requests['redirect']??'/');
+            exit;
         }
         $_SESSION['alert'] = [
             'status'    => '500',
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // echo json_encode(array('code' => '400', 'message' => 'Submission Failed!', 'errors' => $data['errors']));
         $_SESSION['alert'] = [
             'status'    => '400',
-            'msg'       => 'Submission Failed!',
+            'msg'       => $data['errors'][0]??'Submission Failed!',
         ];
 
         header('Location: /contact');

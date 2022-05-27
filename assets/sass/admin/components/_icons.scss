@@ -10,4 +10,13 @@
     &-newspaper:before {
         content: '\f1ea';
     }
+    &-plus:before {
+        content: '\e80a';
+    }
+    &-thumbs-up:before {
+        content: '\e80c';
+    }
+    &-thumbs-down:before {
+        content: '\e80d';
+    }
 }

@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // echo json_encode(array('code' => '400', 'message' => 'Registration Failed!', 'errors' => $data['errors']));
         $_SESSION['alert'] = [
             'status'    => '400',
-            'msg'       => 'Registration Failed!',
+            'msg'       => $data['errors'][0]??'Registration Failed!',
         ];
 
         header('Location: '.$redirect);

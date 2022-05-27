@@ -146,6 +146,62 @@ $(function() {
 
 
 
+
+    /*=====================*\
+            MODAL
+    \*=====================*/
+
+    //REMOVE/CLOSE MODAL
+    $(document).on('click', ".modal__close", function(){
+        removeModal()
+    });
+    //TOGGLE MODAL
+    $(document).on('click', "[data-toggle]", function (){
+        $to_toggle = $(this).data('toggle');
+        var captcha = $(this).data('captcha');
+        var table = $(this).data('table');
+
+        if($to_toggle == 'modal'){
+            if($('#modal').length)
+                removeModal(false)
+
+            $target = $(this).data('target');
+            
+            $.ajax({
+                url: `/views/components/modal/${$target}.php`,
+                type: 'POST',
+                data: {
+                    captcha: captcha,
+                    table: table
+                },
+                success: function(html){
+                    $('body .content').append(html);
+                    $('body,html').addClass('disable');
+                    renderCaptcha();
+
+                }
+            })
+        }
+    });
+
+    //REMOVE MODAL
+    function removeModal(remove = true){
+        $('#modal').remove()
+        if(remove)
+            $('body,html').removeClass('disable');
+    }
+
+    /*=====================*\
+        END OF MODAL
+    \*=====================*/
+
+
+
+
+
+
+
+
     /*=====================*\
              ALERT
     \*=====================*/

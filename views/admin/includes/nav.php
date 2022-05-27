@@ -20,9 +20,9 @@
                         <?php } ?>
                     </a>
                     <ul class="dropdown dropdown--align-right">
-                        <li>
+                        <!-- <li>
                             <a href="/password">Change Password</a>
-                        </li>
+                        </li> -->
                         <li>
                             <form method="POST" action="/controller/logout">
                                 <button name="admin" class="text-plain" type="submit">Logout</button>

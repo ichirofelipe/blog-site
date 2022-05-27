@@ -11,6 +11,7 @@
                     'data' => $users,
                     'action' => 'user',
                     'url' => '/admin/users',
+                    'approve' => 'is_admin_approved',
                 )
             );
         ?>

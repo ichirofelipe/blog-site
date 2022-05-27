@@ -4,8 +4,8 @@ require_once('base/db_config.php');
 require_once('helper/pagination.php');
 require_once('helper/table.php');
 
-if(isset($_GET['list-page']) && $_GET['list-page'])
-    $listPage = $_GET['list-page'];
+if(isset($_GET['page']) && $_GET['page'])
+    $listPage = $_GET['page'];
 else
     $listPage = 1;
 
@@ -16,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $pages = $pageDisplay??5;
     $skip = $limit * ($listPage - 1);
     $posts = selectQuery('posts', $skip, $limit, 'id,title,url,description,created_at');
-    $columns = getColumns($posts[0]);
+    if(isset($_GET['post_id']))
+        $posts = findQuery($_GET['post_id'], 'posts');
+    $columns = getColumns($posts[0]??$posts);
     $totalPosts = countQuery('posts');
     $pagination = paginate($totalPosts['count'], $listPage, $limit, $pages);
 }

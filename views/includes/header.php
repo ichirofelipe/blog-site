@@ -8,10 +8,10 @@
         <title>Best Bookmark</title>
 
         <?php include 'styles.php' ?>
-        <script src="dist/js/jquery.js"></script>
+        <script src="/dist/js/jquery.js"></script>
 
     </head>
 
     <body class="d-flex flex-column justify-between">
-        <div class="content pt-6">
+        <div class="content pt-6 <?= $flex_content?'d-flex flex-1':'' ?>">
             <?php include 'nav.php' ?>

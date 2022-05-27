@@ -8,7 +8,7 @@ $requests = $_POST;
 $table = isset($requests['users'])?'users':'admin';
 $redirect = '/';
 if($table == 'admin')
-    $redirect = '/admin';
+    $redirect = '/admin/news';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // echo json_encode(array('code' => '400', 'message' => 'Login Failed!', 'errors' => $data['errors']));
         $_SESSION['alert'] = [
             'status'    => '400',
-            'msg'       => 'Login Failed!',
+            'msg'       => $data['errors'][0]??'Login Failed!',
         ];
 
         header('Location: '.$redirect);

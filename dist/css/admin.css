@@ -1,4 +1,4 @@
-.menu-btn, .pagination, .pagination__link, .form__group--append > span:not(:last-child), .form__toggle-password, .form__group--append, #account span {
+.menu-btn, .pagination, .pagination__link, .modal__overlay, .form__group--append > span:not(:last-child), .form__toggle-password, .form__group--append, #account span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,7 +10,7 @@
           align-items: center;
 }
 
-#menu:before {
+.modal__overlay, #menu:before {
   position: fixed;
   top: 0;
   left: 0;
@@ -148,6 +148,17 @@ a:hover {
   font-weight: 600;
 }
 
+.title--xl {
+  font-size: 6rem;
+  line-height: 130%;
+}
+
+@media only screen and (max-width: 768px) {
+  .title--xl {
+    font-size: 5rem;
+  }
+}
+
 .title--lg {
   font-size: 4.8rem;
   line-height: 130%;
@@ -194,8 +205,8 @@ a:hover {
 
 @font-face {
   font-family: 'fontello';
-  src: url("../font/fontello.eot?44566028");
-  src: url("../font/fontello.eot?44566028#iefix") format("embedded-opentype"), url("../font/fontello.woff2?44566028") format("woff2"), url("../font/fontello.woff?44566028") format("woff"), url("../font/fontello.ttf?44566028") format("truetype"), url("../font/fontello.svg?44566028#fontello") format("svg");
+  src: url("../font/fontello.eot?66748353");
+  src: url("../font/fontello.eot?66748353#iefix") format("embedded-opentype"), url("../font/fontello.woff2?66748353") format("woff2"), url("../font/fontello.woff?66748353") format("woff"), url("../font/fontello.ttf?66748353") format("truetype"), url("../font/fontello.svg?66748353#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -383,6 +394,12 @@ img {
           align-items: center;
 }
 
+.align-self-center {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 .grid-cols-12 {
   -ms-grid-columns: (minmax(0, 1fr))[12];
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -420,6 +437,10 @@ img {
 
 .mt-3 {
   margin-top: 3rem !important;
+}
+
+.mt-6 {
+  margin-top: 6rem !important;
 }
 
 .mb-0 {
@@ -485,9 +506,15 @@ img {
 }
 
 .dropdown--align-right {
-  left: 0%;
-  -webkit-transform: translate(calc(-50% - 45px), 100%);
-          transform: translate(calc(-50% - 45px), 100%);
+  left: unset !important;
+  right: 3px;
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+}
+
+.dropdown--align-right:before {
+  right: 0;
+  left: unset !important;
 }
 
 .dropdown.active {
@@ -500,7 +527,7 @@ img {
   content: '';
   position: absolute;
   top: 0px;
-  right: 0%;
+  left: 50%;
   -webkit-transform: translate(-50%, -100%);
           transform: translate(-50%, -100%);
   border-left: 10px solid transparent;
@@ -751,6 +778,62 @@ img {
   border-bottom-right-radius: 3px;
 }
 
+.modal {
+  background: #FFFFFF;
+  width: 425px;
+  max-width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.modal__overlay {
+  z-index: 15;
+}
+
+.modal__close {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0.5;
+  cursor: pointer;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.modal__close:hover {
+  opacity: 1;
+}
+
+.modal__close:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #FFFFFF;
+}
+
+.modal__close:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: block;
+  width: 4px;
+  height: 100%;
+  background: #FFFFFF;
+}
+
 .icon-user-1:before {
   content: '\e801';
 }
@@ -793,6 +876,18 @@ img {
 
 .icon-newspaper:before {
   content: '\f1ea';
+}
+
+.icon-plus:before {
+  content: '\e80a';
+}
+
+.icon-thumbs-up:before {
+  content: '\e80c';
+}
+
+.icon-thumbs-down:before {
+  content: '\e80d';
 }
 
 .form__group--append > span:not(:last-child), .form__toggle-password {
@@ -928,7 +1023,15 @@ img {
 .table {
   border-collapse: collapse;
   border-spacing: 0;
+  min-width: 769px;
   width: 100%;
+  position: relative;
+}
+
+.table__container {
+  position: relative;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .table * {
@@ -957,6 +1060,25 @@ img {
 
 .table tbody tr td {
   padding: 15px;
+}
+
+.button {
+  background: #dbdbdb;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.button--default {
+  border-radius: 3px;
+}
+
+.button--default:hover {
+  background: #c4c4c4;
 }
 
 nav ul {

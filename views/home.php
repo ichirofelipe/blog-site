@@ -7,18 +7,20 @@
         <section>
             <?php if($posts){ ?>
                 <?php 
-
-                    includeWithVariables(dirname(__FILE__).'/components/card.php', 
-                        array(
-                            'posts' => $posts
-                        )
-                    );
+                    foreach($posts as $post){
+                        includeWithVariables(dirname(__FILE__).'/components/card.php', 
+                            array(
+                                'post' => $post,
+                                'local_link' => true,
+                            )
+                        );
+                    }
 
                     includeWithVariables(dirname(__FILE__).'/components/pagination.php', 
                         array(
                             'currentPage' => $listPage,
                             'pagination' => $pagination, 
-                            'url' => '/'
+                            'url' => ''
                         )
                     );
                     

@@ -1,5 +1,22 @@
 Options +FollowSymlinks
 RewriteEngine on
+ErrorDocument 403 /404
+ErrorDocument 404 /404
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?page=$1 [NC,QSA]
+
+RewriteRule ^admin$ aaaaaadddmin.php?admin_code=news [L]
+
+RewriteRule ^([a-z]+)$ index.php?page_code=$1 [L]
+
+RewriteRule ^post/([0-9]+)/?$ index.php?page_code=post&post_id=$1 [L]
+
+RewriteRule ^page/([0-9]+)/?$ index.php?page=$1 [L]
+
+RewriteRule ^admin/([a-z]+)$ aaaaaadddmin.php?admin_code=$1 [L]
+
+RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ aaaaaadddmin.php?admin_code=$1&page=$2 [L]
+
+RewriteRule ^controller/([a-z]+)$ controller.php?php_code=$1 [L]
+
+# RewriteRule ^post/([0-9]+)/?$ /index.php?page_code=post_view&id=$1 [L]

@@ -41,6 +41,23 @@ function insertQuery($data, $table, $getLastId = false){
   return $result;
 }
 
+function insertMultipleQuery($table, $columns, $values){
+  global $conn;
+
+  $query = "INSERT INTO $table (".implode(',',$columns).") VALUES ";
+  foreach($values as $key => $val){
+    $query.="(".implode(',',$val).")";
+    if($key+1 == count($values)){
+      $query.=";";
+      continue;
+    }
+    $query.=",";
+  }
+  
+  $result = $conn->query($query);
+  return $result;
+}
+
 function userVerificationQuery($data, $getLastId = false, $table = 'users'){
   global $conn;
 
@@ -96,6 +113,18 @@ function deleteQuery($id, $table){
   global $conn;
 
   $query = "DELETE FROM $table WHERE id = ".$id;
+
+  $result = $conn->query($query);
+
+  return $result;
+}
+
+function toggleStateQuery($id, $table, $column, $value){
+  global $conn;
+
+  $query = "UPDATE ".$table."
+  SET ".$column." = ".(1 - $value)."
+  WHERE id = ".$id;
 
   $result = $conn->query($query);
 

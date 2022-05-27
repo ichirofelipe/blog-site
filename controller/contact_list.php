@@ -4,8 +4,8 @@ require_once('base/db_config.php');
 require_once('helper/pagination.php');
 require_once('helper/table.php');
 
-if(isset($_GET['list-page']) && $_GET['list-page'])
-    $listPage = $_GET['list-page'];
+if(isset($_GET['page']) && $_GET['page'])
+    $listPage = $_GET['page'];
 else
     $listPage = 1;
 

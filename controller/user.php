@@ -20,6 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'msg'       => 'Deleted Successfully!',
             ];
             header('Location: '.$requests['redirect']??'/');
+            exit;
+        }
+        $_SESSION['alert'] = [
+            'status'    => '500',
+            'msg'       => 'Something went wrong!',
+        ];
+        header('Location: '.$requests['redirect']??'/');
+        
+    }
+
+    if(isset($requests['approve'])){
+        $id = $requests['approve'];
+        $column = $requests['column'];
+        $value = $requests['value'];
+        if(toggleStateQuery($id, 'users', $column, $value)){
+            $_SESSION['alert'] = [
+                'status'    => '201',
+                'msg'       => 'Updated Successfully!',
+            ];
+            header('Location: '.$requests['redirect']??'/');
+            exit;
         }
         $_SESSION['alert'] = [
             'status'    => '500',

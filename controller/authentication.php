@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $payload = base64_decode(explode('.', $_COOKIE['_token'])[1]);
         if($id = json_decode($payload)->id){
             $user = findQuery($id, 'users');
+            if(isset($user['is_admin_approved']) && $user['is_admin_approved'])
+                $captcha = 1;
         }
     }
     else if(isset($_COOKIE['_token'])){
