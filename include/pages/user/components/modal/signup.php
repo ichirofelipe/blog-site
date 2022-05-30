@@ -5,7 +5,7 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">Create New Account</h3>
             </div>
-            <form class="form--validate" method="POST" action="/action/signup">
+            <form class="form--validate" method="POST" action="/signup-request">
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
                     <input data-fieldname="Username" data-rules="required,max:50" type="text" name="username" placeholder="Username *">

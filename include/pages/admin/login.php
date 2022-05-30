@@ -1,3 +1,12 @@
+<?php
+require_once('../../../action/authentication.php');
+
+if($admin){
+    header('Location: /admin/posts');
+}
+
+include_once("layout/header.php");
+?>
 <div class="container">
     <div>
         <h1 class="title title--md text-center">Admin Bookmark</h1>
@@ -5,7 +14,7 @@
             <div class="card__body text-center">
                 <h4 class="card__title title--sm text-bold m-0">Login</h4>
                 <div class="divider"></div>
-                <form class="form--validate text-left" method="POST" action="/action/login">
+                <form class="form--validate text-left" method="POST" action="/login-request">
                     <div class="form__group form__group--append">
                         <span class="icon-user-1"></span>
                         <input data-fieldname="Username" data-rules="required" type="text" name="username" placeholder="Username *">
@@ -25,3 +34,6 @@
         </article>
     </div>
 </div>
+<?php
+include_once("layout/footer.php");
+?>

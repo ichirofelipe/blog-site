@@ -1,3 +1,6 @@
+<?php
+closeConn();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

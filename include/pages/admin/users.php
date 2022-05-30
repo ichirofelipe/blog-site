@@ -1,3 +1,14 @@
+<?php
+require_once('../../../action/authentication.php');
+require_once('../../../action/user_list.php');
+
+if(!$admin){
+    header('Location: /admin');
+}
+$active = $_GET['active_page']??'';
+
+include_once("layout/header.php");
+?>
 <div class="container container--full mb-2">
     <div class="heading">
         <h1 class="title title--md">Users</h1>
@@ -31,3 +42,6 @@
         );
     ?>
 </div>
+<?php
+include_once("layout/footer.php");
+?>

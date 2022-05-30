@@ -1,6 +1,6 @@
 <?php
 
-require_once('include/dbconfig.php');
+require_once('../../../include/dbconfig.php');
 
 header("Access-Control-Allow-Origin: *");
 

@@ -1,3 +1,12 @@
+<?php
+require_once('../../../action/authentication.php');
+
+if(!$user){
+    header('Location: /');
+}
+
+include_once("layout/header.php");
+?>
 <div class="container">
 
     <section class="d-block d-md-grid grid-cols-12">
@@ -5,7 +14,7 @@
             <div class="heading">
                 <h1 class="title">Create Post</h1>
             </div>
-            <form class="form--validate" method="POST" action="/action/post">
+            <form class="form--validate" method="POST" action="/post-request">
                 <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                 <div class="form__group">
                     <input data-fieldname="Title" data-rules="required" type="text" name="title" placeholder="Title *">
@@ -42,3 +51,7 @@
 </div>
 
 </div>
+
+<?php
+include_once("layout/footer.php");
+?>

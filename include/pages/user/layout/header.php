@@ -1,3 +1,6 @@
+<?php
+closeConn();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,5 +16,5 @@
     </head>
 
     <body class="d-flex flex-column justify-between">
-        <div class="content pt-6 <?= $page==403||$page==404?'d-flex flex-1':'' ?>">
+        <div class="content pt-6 <?= isset($status) && $status?'d-flex flex-1':'' ?>">
             <?php include 'nav.php' ?>

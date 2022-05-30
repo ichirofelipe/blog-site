@@ -1,11 +1,16 @@
-    <div class="container">
+<?php
+require_once('../../../action/authentication.php');
+
+include_once("layout/header.php");
+?>
+<div class="container">
 
         <section class="d-block d-md-grid grid-cols-12">
             <div class="col-span-6 col-start-4">
                 <div class="heading">
                     <h1 class="title">Contact Us</h1>
                 </div>
-                <form class="form--validate" method="POST" action="/action/contact">
+                <form class="form--validate" method="POST" action="/contact-request">
                     <div class="form__group">
                         <input data-fieldname="Full Name" data-rules="required,max:50" type="text" name="name" placeholder="Full Name *">
                     </div>
@@ -43,3 +48,6 @@
     </div>
     
 </div>
+<?php
+include_once("layout/footer.php");
+?>

@@ -7,8 +7,8 @@ $requests = $_POST;
 $table = isset($requests['users'])?'users':'admin';
 $redirect = '/';
 if($table == 'admin')
-    $redirect = '/admin/news';
-
+    $redirect = '/admin/posts';
+    
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 

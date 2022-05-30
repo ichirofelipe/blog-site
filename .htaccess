@@ -4,23 +4,19 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-ErrorDocument 403 /bookmark/index.php?page_code=403
-ErrorDocument 404 /bookmark/index.php?page_code=404
+ErrorDocument 403 /bookmark/include/pages/user/403.php?status=true
+ErrorDocument 404 /bookmark/include/pages/user/404.php?status=true
 
-RewriteRule ^admin$ aaaaaadddmin.php?admin_code=news [L]
+#ADMIN PAGES
+RewriteRule ^admin$ /bookmark/include/pages/admin/login.php [L]
+RewriteRule ^admin/([a-z]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1 [L]
+RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1&page=$2 [L]
 
-RewriteRule ^([a-z]+)$ index.php?page_code=$1 [L]
+#USER PAGES
+RewriteRule ^$ /bookmark/include/pages/user/home.php [L]
+RewriteRule ^([a-z]+)$ /bookmark/include/pages/user/$1.php [L]
+RewriteRule ^page/([0-9]+)/?$ /bookmark/include/pages/user/home.php?page=$1 [L]
+RewriteRule ^post/([0-9]+)/?$ /bookmark/include/pages/user/post_view.php?post_id=$1 [L]
 
-RewriteRule ^post/([0-9]+)/?$ index.php?page_code=post&post_id=$1 [L]
-
-RewriteRule ^page/([0-9]+)/?$ index.php?page=$1 [L]
-
-RewriteRule ^admin/([a-z]+)$ aaaaaadddmin.php?admin_code=$1 [L]
-
-RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ aaaaaadddmin.php?admin_code=$1&page=$2 [L]
-
-RewriteRule ^controller/([a-z]+)$ controller.php?php_code=$1 [L]
-
-RewriteRule ^action/([a-z]+)$ action/$1.php [L]
-
-#REQUESTS
+#ACTION REQUESTS
+RewriteRule ^([a-z]+)-request$ action/$1.php [L]

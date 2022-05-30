@@ -31,7 +31,7 @@
                             <a href="/post">Create Post</a>
                         </li>
                         <li>
-                            <form method="POST" action="/action/logout">
+                            <form method="POST" action="/logout-request">
                                 <button name="user" class="text-plain" type="submit">Logout</button>
                             </form>
                         </li>
@@ -50,7 +50,7 @@
                         <a href="/post">Create Post</a>
                     </li>
                     <li class="px-1 d-flex d-sm-none">
-                        <form class="w-full" method="POST" action="/action/logout">
+                        <form class="w-full" method="POST" action="/logout-request">
                             <button name="user" class="text-plain" type="submit">Logout</button>
                         </form>
                     </li>

@@ -5,7 +5,7 @@
             <div class="modal__heading text-center">
                 <h3 class="title--sm mt-0">Upload</h3>
             </div>
-            <form class="form--validate" method="POST" action="/action/upload" enctype="multipart/form-data">
+            <form class="form--validate" method="POST" action="/upload-request" enctype="multipart/form-data">
                 <div class="form__group">
                     <input data-fieldname="File" data-rules="required" type="file" name="file" placeholder="File *">
                 </div>

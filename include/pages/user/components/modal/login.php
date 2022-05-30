@@ -5,7 +5,7 @@
             <div class="modal__heading">
                 <h3 class="title--sm mt-0">User Login</h3>
             </div>
-            <form class="form--validate" method="POST" action="/action/login">
+            <form class="form--validate" method="POST" action="/login-request">
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
                     <input data-fieldname="Username" data-rules="required" type="text" name="username" placeholder="Username *">
