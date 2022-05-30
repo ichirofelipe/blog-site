@@ -1,9 +1,11 @@
 Options +FollowSymlinks
 RewriteEngine on
-ErrorDocument 403 /404
-ErrorDocument 404 /404
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+ErrorDocument 403 /bookmark/index.php?page_code=403
+ErrorDocument 404 /bookmark/index.php?page_code=404
 
 RewriteRule ^admin$ aaaaaadddmin.php?admin_code=news [L]
 
@@ -19,4 +21,6 @@ RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ aaaaaadddmin.php?admin_code=$1&page=$
 
 RewriteRule ^controller/([a-z]+)$ controller.php?php_code=$1 [L]
 
-# RewriteRule ^post/([0-9]+)/?$ /index.php?page_code=post_view&id=$1 [L]
+RewriteRule ^action/([a-z]+)$ action/$1.php [L]
+
+#REQUESTS

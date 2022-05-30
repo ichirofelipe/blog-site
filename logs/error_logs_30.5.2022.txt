@@ -1,0 +1,13 @@
+mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '15:05:59,2022-05-30 15:05:59)' at line 2 in C:\xampp\htdocs\bookmark\include\dbconfig.php:37
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(37): mysqli->query('INSERT INTO adm...')
+#1 C:\xampp\htdocs\bookmark\action\signup.php(36): insertQuery(Array, 'admin', true)
+#2 {main}mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'created_at,updated_at VALUES ('sample_title','sample_url','sample_description...' at line 1 in C:\xampp\htdocs\bookmark\include\dbconfig.php:59
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(59): mysqli->query('INSERT INTO pos...')
+#1 C:\xampp\htdocs\bookmark\action\upload.php(49): insertMultipleQuery('posts', Array, Array)
+#2 {main}mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'created_at,updated_at VALUES ('sample_title','sample_url','sample_description...' at line 1 in C:\xampp\htdocs\bookmark\include\dbconfig.php:59
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(59): mysqli->query('INSERT INTO pos...')
+#1 C:\xampp\htdocs\bookmark\action\upload.php(49): insertMultipleQuery('posts', Array, Array)
+#2 {main}

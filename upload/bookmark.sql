@@ -1,0 +1,5 @@
+ create table `users` (`id` bigint unsigned not null auto_increment primary key, `username` varchar(64) not null, `password` varchar(64) not null, `is_admin_approved` char(1) not null default '0', `created_at` timestamp null, `updated_at` timestamp null);
+create table `posts` (`id` bigint unsigned not null auto_increment primary key, `title` varchar(256) not null, `url` varchar(256) not null, `description` varchar(2048) not null, `user_id` bigint unsigned null, `created_at` timestamp null, `updated_at` timestamp null);
+alter table `posts` add constraint `posts_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade;
+create table `contacts` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(64) not null, `email` varchar(64) not null, `phone` varchar(25) not null, `message` varchar(2048) not null, `created_at` timestamp null, `updated_at` timestamp null);
+create table `admin` (`id` bigint unsigned not null auto_increment primary key, `username` varchar(64) not null, `password` varchar(64) not null, `created_at` timestamp null, `updated_at` timestamp null);

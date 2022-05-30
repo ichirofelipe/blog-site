@@ -1,6 +1,7 @@
 <?php
-require_once('controller/authentication.php');
-require_once('functions.php');
+require_once('action/authentication.php');
+
+$page = $_GET['page_code']??'home';
 
 /*=====================*\
           ADMIN
@@ -8,20 +9,10 @@ require_once('functions.php');
 
 if((isset($_GET['admin_code']) && $_GET['admin_code']) || $page == 'admin'){
     $page = $active = $_GET['admin_code']??'';
-    $dir = "views/admin/";
+    $dir = "include/pages/admin/";
 
 
-    include_once("views/admin/includes/header.php");
-
-    if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
-        if($admin){
-            include_once('views/includes/alert.php');
-        }
-        else{
-            include_once('views/admin/includes/alert.php');
-        }
-        unset($_SESSION['alert']);
-    }
+    include_once($dir."layout/header.php");
 
     if(!$admin){
         switch($page){
@@ -42,17 +33,17 @@ if((isset($_GET['admin_code']) && $_GET['admin_code']) || $page == 'admin'){
             case "":
                 //PAGINATION SETTINGS
                 $toShow = 5;
-                require_once("controller/post_list.php");
+                require_once("action/post_list.php");
                 require_once($dir."posts.php");
                 break;
             case "users":
                 $toShow = 5;
-                require_once("controller/user_list.php");
+                require_once("action/user_list.php");
                 require_once($dir."users.php");
                 break;
             case "contacts":
                 $toShow = 5;
-                require_once("controller/contact_list.php");
+                require_once("action/contact_list.php");
                 require_once($dir."contacts.php");
                 break;
             default:
@@ -60,6 +51,9 @@ if((isset($_GET['admin_code']) && $_GET['admin_code']) || $page == 'admin'){
                 break;
         }
     }
+    closeConn();
+    include $dir.'layout/footer.php';
+
     exit;
 }
 

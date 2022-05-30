@@ -1,1 +1,0 @@
-<script src="/dist/js/admin.js?v=<?=date('YmHdis')?>"></script>

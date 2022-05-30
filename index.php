@@ -1,51 +1,49 @@
 <?php
-    require_once('controller/authentication.php');
-    require_once('functions.php');
+    require_once('action/authentication.php');
+
+    $page = $_GET['page_code']??'home';
+    $dir = "include/pages/user/";
     
     
     /*=====================*\
             FRONT
     \*=====================*/
-    $pages = ["home","about","contact","terms","post"];
-    $flex_content = false;
-    if(!in_array($page, $pages)){
-        $flex_content = true;
-    }
 
-    include_once("views/includes/header.php");
-
-    if(isset($_SESSION['alert']) && $_SESSION['alert'] != ''){
-        include_once("views/includes/alert.php");
-        unset($_SESSION['alert']);
-    }
+    include_once($dir."layout/header.php");
 
     switch($page){
         case "home":
-            require_once("controller/post_list.php");
-            include_once("views/home.php");
+            require_once("action/post_list.php");
+            include_once($dir."home.php");
             break;
         case "about":
-            include_once("views/about.php");
+            include_once($dir."about.php");
             break;
         case "contact":
-            include_once("views/contact.php");
+            include_once($dir."contact.php");
             break;
         case "terms":
-            include_once("views/terms.php");
+            include_once($dir."terms.php");
             break;
         case "post":
             if(!isset($_GET['post_id'])){
                 if(!$user){
                     header('Location: /');
                 }
-                include_once("views/post.php");
+                include_once($dir."post.php");
                 break;  
             }
-            require_once("controller/post_list.php");
-            include_once("views/post_view.php");
+            require_once("action/post_list.php");
+            include_once($dir."post_view.php");
+            break;
+        case "403":
+            require_once($dir."403.php");
             break;
         default:
-            require_once("views/404.php");
+            require_once($dir."404.php");
             break;
     }
+    closeConn();
+
+    include_once($dir."layout/footer.php");
 ?>
