@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo    "<script>
                 alert('Logged out successfully!');
             </script>";
-
+    
     if(isset($_POST['user'])){
         if (isset($_COOKIE['_token'])) {
             unset($_COOKIE['_token']); 

@@ -2,6 +2,10 @@
 require_once('../../../action/authentication.php');
 require_once('../../../action/post_list.php');
 
+$title = $posts['title'];
+$url = $posts['url'];
+$description = $posts['description'];
+
 include_once("layout/header.php");
 ?>
     <div class="container">

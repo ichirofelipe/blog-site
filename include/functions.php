@@ -20,8 +20,8 @@
         if ($print) {
             print $output;
         }
+        
         return $output;
-
     }
 
     function generate_jwt($headers, $payload, $secret = 'iloveFamily') {
