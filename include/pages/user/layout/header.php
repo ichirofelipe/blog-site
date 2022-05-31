@@ -1,7 +1,14 @@
 <?php
-closeConn();
+// $title = ucfirst(clean_input($title??$_GET['page_title']??'Home'));
 
-$title = ucfirst($title??$_GET['page_title']??'Home');
+if(isset($_GET['page_title']) && $_GET['page_title'] && !isset($title)){
+    $title = clean_input($_GET['page_title']);
+}
+if(!isset($title)){
+    $title = 'Home';
+}
+$title = ucfirst($title);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -10,8 +10,8 @@ header("Access-Control-Allow-Methods: POST");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if(isset($requests['delete'])){
-        $id = $requests['delete'];
+    if(isset($requests['delete']) && $requests['delete']){
+        $id = clean_input($requests['delete']);
         
         if(deleteQuery($id, 'contacts')){
             closeConn();

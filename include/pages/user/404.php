@@ -1,6 +1,9 @@
 <?php
 require_once('../../../action/authentication.php');
-$status = $_GET['status']??false;
+
+$status = false;
+if(isset($_GET['status']) && $_GET['status'])
+    $status = clean_input($_GET['status']);
 
 include_once("layout/header.php");
 ?>

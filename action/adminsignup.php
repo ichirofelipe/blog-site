@@ -1,10 +1,10 @@
 <?php
 
 require_once('../include/dbconfig.php');
-require_once('rules/signup_rules.php');
+require_once('rules/admin_signup_rules.php');
 
 $requests = $_POST;
-$redirect = '/';
+$redirect = '/admin';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -25,13 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($data['errors']);
 
     try{
-        if($query = insertQuery($data, 'users', true)){
+        if($query = insertQuery($data, 'admin', true)){
             closeConn();
             
-            generateToken($query);
-            if($requests['captcha-input']){
-                generateToken($requests['captcha-input'], '_captcha', 60);
-            }
+            generateToken($query, '_admin');
 
             echo    "<script>
                         alert('Registered Successfully!');

@@ -14,7 +14,7 @@ include_once("layout/header.php");
             <div class="card__body text-center">
                 <h4 class="card__title title--sm text-bold m-0">Login</h4>
                 <div class="divider"></div>
-                <form class="form--validate text-left" method="POST" action="/login-request">
+                <form class="form--validate text-left" method="POST" action="/adminlogin-request">
                     <div class="form__group form__group--append">
                         <span class="icon-user-1"></span>
                         <input data-fieldname="Username" data-rules="required" type="text" name="username" placeholder="Username *">

@@ -9,8 +9,8 @@ header("Access-Control-Allow-Methods: POST");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if(isset($requests['delete'])){
-        $id = $requests['delete'];
+    if(isset($requests['delete']) && $requests['delete']){
+        $id = clean_input($requests['delete']);
         
         if(deleteQuery($id, 'users')){
             closeConn();
@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     }
 
-    if(isset($requests['approve'])){
-        $id = $requests['approve'];
-        $column = $requests['column'];
-        $value = $requests['value'];
+    if(isset($requests['approve']) && $requests['approve']){
+        $id = clean_input($requests['approve']);
+        $column = clean_input($requests['column']);
+        $value = clean_input($requests['value']);
 
         if(toggleStateQuery($id, 'users', $column, $value)){
             closeConn();

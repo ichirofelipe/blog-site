@@ -5,7 +5,11 @@ require_once('../../../action/post_list.php');
 if(!$admin){
     header('Location: /admin');
 }
-$active = $_GET['active_page']??'';
+
+
+$active = '';
+if(isset($_GET['active_page']) && $_GET['active_page'])
+    $active = clean_input($_GET['active_page']);
 
 include_once("layout/header.php");
 ?>

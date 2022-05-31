@@ -4,7 +4,8 @@ require_once('../include/dbconfig.php');
 require_once('rules/login_rules.php');
 
 $requests = $_POST;
-$redirect = '/';
+$redirect = '/admin/posts';
+    
     
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -25,13 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($data['errors']);
     
     try{
-        if($query = userVerificationQuery($data, true, 'users')){
+        if($query = userVerificationQuery($data, true, 'admin')){
             closeConn();
 
-            generateToken($query);
-            if(isset($requests['captcha-input'])){
-                generateToken($requests['captcha-input'], '_captcha', 60);
-            }
+            generateToken($query, '_admin');
 
             echo    "<script>
                         alert('Logged in Successfully!');

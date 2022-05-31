@@ -13,8 +13,9 @@ RewriteRule ^admin/([a-z]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1
 RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1&page=$2 [L]
 
 #USER PAGES
-RewriteRule ^$ /bookmark/include/pages/user/home.php [L]
-RewriteRule ^([a-z]+)$ /bookmark/include/pages/user/$1.php?page_title=$1 [L]
+# RewriteRule ^$ /bookmark/include/pages/user/home.php [L]
+RewriteRule ^([a-z]+)$ index.php?page_code=$1 [L]
+# RewriteRule ^([a-z]+)$ /bookmark/include/pages/user/$1.php?page_title=$1 [L]
 RewriteRule ^page/([0-9]+)/?$ /bookmark/include/pages/user/home.php?page=$1 [L]
 RewriteRule ^post/([0-9]+)/?$ /bookmark/include/pages/user/post_view.php?post_id=$1 [L]
 

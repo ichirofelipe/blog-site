@@ -1,6 +1,9 @@
 <?php
 
-$listPage = $_GET['page'] ?? 1;
+if(isset($_GET['page']) && $_GET['page'])
+    $listPage = clean_input($_GET['page']);
+else
+    $listPage = 1;
 
 header("Access-Control-Allow-Origin: *");
 

@@ -9,8 +9,8 @@ header("Access-Control-Allow-Methods: POST");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if(isset($requests['upload'])){
-        $table = $requests['upload'];
+    if(isset($requests['upload']) && $requests['upload']){
+        $table = clean_input($requests['upload']);
         $file = $_FILES['file'];
         $filename = $file['tmp_name'];
         $columns = [];

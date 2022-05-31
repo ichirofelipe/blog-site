@@ -9,7 +9,7 @@ include_once("layout/header.php");
             <div class="card__body text-center">
                 <h4 class="card__title title--sm text-bold m-0">Sign Up</h4>
                 <div class="divider"></div>
-                <form class="form--validate text-left" method="POST" action="/signup-request">
+                <form class="form--validate text-left" method="POST" action="/adminsignup-request">
                     <div class="form__group form__group--append">
                         <span class="icon-user-1"></span>
                         <input data-fieldname="Username" data-rules="required,max:50" type="text" name="username" placeholder="Username *">
