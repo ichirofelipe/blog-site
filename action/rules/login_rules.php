@@ -1,8 +1,8 @@
 <?php
 
 $rules = [
-    'username'      => 'required,max:50',
-    'password'      => 'required,max:50,min:5',
+    'username'      => 'required,max:32',
+    'password'      => 'required,max:64,min:5',
 ];
 
 ?>

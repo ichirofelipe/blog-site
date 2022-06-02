@@ -1,0 +1,29 @@
+mysqli_sql_exception: Unknown column 'username' in 'field list' in C:\xampp\htdocs\bookmark\include\dbconfig.php:38
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(38): mysqli->query('INSERT INTO bmk...')
+#1 C:\xampp\htdocs\bookmark\action\signup.php(28): insertQuery(Array, 'users', true)
+#2 {main}mysqli_sql_exception: Unknown column 'username' in 'field list' in C:\xampp\htdocs\bookmark\include\dbconfig.php:38
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(38): mysqli->query('INSERT INTO bmk...')
+#1 C:\xampp\htdocs\bookmark\action\signup.php(28): insertQuery(Array, 'users', true)
+#2 {main}mysqli_sql_exception: Unknown column 'created_at' in 'field list' in C:\xampp\htdocs\bookmark\include\dbconfig.php:38
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(38): mysqli->query('INSERT INTO bmk...')
+#1 C:\xampp\htdocs\bookmark\action\signup.php(28): insertQuery(Array, 'users', true)
+#2 {main}mysqli_sql_exception: Unknown column 'created_at' in 'field list' in C:\xampp\htdocs\bookmark\include\dbconfig.php:38
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(38): mysqli->query('INSERT INTO bmk...')
+#1 C:\xampp\htdocs\bookmark\action\signup.php(28): insertQuery(Array, 'users', true)
+#2 {main}mysqli_sql_exception: Unknown column 'title' in 'field list' in C:\xampp\htdocs\bookmark\include\dbconfig.php:60
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(60): mysqli->query('INSERT INTO bmk...')
+#1 C:\xampp\htdocs\bookmark\action\upload.php(49): insertMultipleQuery('posts', Array, Array)
+#2 {main}mysqli_sql_exception: Unknown column 'username' in 'where clause' in C:\xampp\htdocs\bookmark\include\dbconfig.php:68
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(68): mysqli->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\bookmark\action\adminlogin.php(29): userVerificationQuery(Array, true, 'admin')
+#2 {main}mysqli_sql_exception: Unknown column 'username' in 'where clause' in C:\xampp\htdocs\bookmark\include\dbconfig.php:68
+Stack trace:
+#0 C:\xampp\htdocs\bookmark\include\dbconfig.php(68): mysqli->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\bookmark\action\adminlogin.php(29): userVerificationQuery(Array, true, 'admin')
+#2 {main}

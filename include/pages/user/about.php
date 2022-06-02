@@ -1,8 +1,4 @@
-<?php
-require_once('../../../action/authentication.php');
 
-include_once("layout/header.php");
-?>
     <div class="container">
         <section class="d-block d-md-grid grid-cols-12">
             <div class="col-span-8 col-start-3">
@@ -25,6 +21,3 @@ include_once("layout/header.php");
         </section>
     </div>
 </div>
-<?php
-include_once("layout/footer.php");
-?>

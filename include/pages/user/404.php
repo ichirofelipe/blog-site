@@ -1,4 +1,6 @@
 <?php
+$owndb = '';
+require_once('../../../include/dbconfig.php');
 require_once('../../../action/authentication.php');
 
 $status = false;

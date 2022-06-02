@@ -8,16 +8,29 @@ ErrorDocument 403 /bookmark/include/pages/user/403.php?status=true
 ErrorDocument 404 /bookmark/include/pages/user/404.php?status=true
 
 #ADMIN PAGES
-RewriteRule ^admin$ /bookmark/include/pages/admin/login.php [L]
-RewriteRule ^admin/([a-z]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1 [L]
-RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1&page=$2 [L]
+RewriteRule ^admin$ index.php?admin_code=posts [L]
+RewriteRule ^admin/([a-z]+)$ index.php?active_page=$1&admin_code=$1 [L]
+RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ index.php?active_page=$1&admin_code=$1&page=$2 [L]
+
+# OLD PATHS m
+# RewriteRule ^admin$ /bookmark/include/pages/admin/login.php [L]
+# RewriteRule ^admin/([a-z]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1 [L]
+# RewriteRule ^admin/([a-z]+)/page/([0-9]+)$ /bookmark/include/pages/admin/$1.php?active_page=$1&page=$2 [L]
 
 #USER PAGES
+RewriteRule ^$ index.php?page_code=home [L]
+RewriteRule ^about$ index.php?page_code=about [L]
+RewriteRule ^contact$ index.php?page_code=contact [L]
+RewriteRule ^terms$ index.php?page_code=terms [L]
+RewriteRule ^post$ index.php?page_code=post [L]
+RewriteRule ^post/([0-9]+)/?$ index.php?post_id=$1&page_code=post_view [L]
+RewriteRule ^page/([0-9]+)/?$ index.php?page=$1&page_code=home [L]
+
+# OLD PATHS
 # RewriteRule ^$ /bookmark/include/pages/user/home.php [L]
-RewriteRule ^([a-z]+)$ index.php?page_code=$1 [L]
 # RewriteRule ^([a-z]+)$ /bookmark/include/pages/user/$1.php?page_title=$1 [L]
-RewriteRule ^page/([0-9]+)/?$ /bookmark/include/pages/user/home.php?page=$1 [L]
-RewriteRule ^post/([0-9]+)/?$ /bookmark/include/pages/user/post_view.php?post_id=$1 [L]
+# RewriteRule ^page/([0-9]+)/?$ /bookmark/include/pages/user/home.php?page=$1 [L]
+# RewriteRule ^post/([0-9]+)/?$ /bookmark/include/pages/user/post_view.php?post_id=$1 [L]
 
 #ACTION REQUESTS
 RewriteRule ^([a-z]+)-request$ action/$1.php [L]

@@ -1,10 +1,4 @@
-<?php
-require_once('../../../action/authentication.php');
-
-include_once("layout/header.php");
-?>
-<div class="container">
-
+    <div class="container">
         <section class="d-block d-md-grid grid-cols-12">
             <div class="col-span-6 col-start-4">
                 <div class="heading">
@@ -12,13 +6,13 @@ include_once("layout/header.php");
                 </div>
                 <form class="form--validate" method="POST" action="/contact-request">
                     <div class="form__group">
-                        <input data-fieldname="Full Name" data-rules="required,max:50" type="text" name="name" placeholder="Full Name *">
+                        <input data-fieldname="Full Name" data-rules="required,max:32" type="text" name="name" placeholder="Full Name *">
                     </div>
                     <div class="form__group">
-                        <input data-fieldname="E-mail" data-rules="required,max:50" type="email" name="email" placeholder="E-mail *">
+                        <input data-fieldname="E-mail" data-rules="required,max:64" type="email" name="email" placeholder="E-mail *">
                     </div>
                     <div class="form__group">
-                        <input data-fieldname="Phone Number" data-rules="max:25" type="text" name="phone" placeholder="Phone Number">
+                        <input data-fieldname="Phone Number" data-rules="max:16" type="text" name="phone" placeholder="Phone Number">
                     </div>
                     <div class="form__group">
                         <textarea data-fieldname="Short Description" data-rules="required,max:2048" name="message" id="" cols="30" rows="10" placeholder="Message *"></textarea>
@@ -48,6 +42,3 @@ include_once("layout/header.php");
     </div>
     
 </div>
-<?php
-include_once("layout/footer.php");
-?>

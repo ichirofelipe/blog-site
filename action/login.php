@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($query = userVerificationQuery($data, true, 'users')){
             closeConn();
 
-            generateToken($query);
+            generateToken($query, '_token', 10);
             if(isset($requests['captcha-input'])){
                 generateToken($requests['captcha-input'], '_captcha', 60);
             }

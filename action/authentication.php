@@ -1,7 +1,7 @@
 <?php
-
-require_once('include/dbconfig.php');
-
+if(!isset($owndb)){
+    require_once('include/dbconfig.php');
+}
 header("Access-Control-Allow-Origin: *");
 
 $user = false;
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $payload = base64_decode(explode('.', $_COOKIE['_token'])[1]);
         if($id = json_decode($payload)->id){
             $user = findQuery($id, 'users');
-            if(isset($user['is_admin_approved']) && $user['is_admin_approved'])
+            if(isset($user['users_is_admin_approved']) && $user['users_is_admin_approved'] == 'y')
                 $captcha = 1;
         }
     }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         setcookie('_token', null, -1, '/');
 
         echo    "<script>
-                    alert('Loggin expired! Please login again.');
+                    alert('Login expired! Please login again.');
                 </script>";
         exit;
     }
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         setcookie('_admin', null, -1, '/');
 
         echo    "<script>
-                    alert('Loggin expired! Please login again.');
+                    alert('Login expired! Please login again.');
                 </script>";
     }
 

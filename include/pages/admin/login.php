@@ -1,12 +1,3 @@
-<?php
-require_once('../../../action/authentication.php');
-
-if($admin){
-    header('Location: /admin/posts');
-}
-
-include_once("layout/header.php");
-?>
 <div class="container">
     <div>
         <h1 class="title title--md text-center">Admin Bookmark</h1>
@@ -34,6 +25,3 @@ include_once("layout/header.php");
         </article>
     </div>
 </div>
-<?php
-include_once("layout/footer.php");
-?>

@@ -1,5 +1,7 @@
 <?php
-closeConn();
+$active = '';
+if(isset($_GET['active_page']) && $_GET['active_page'])
+    $active = clean_input($_GET['active_page']);
 ?>
 <!DOCTYPE html>
 <html lang="en">

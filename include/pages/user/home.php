@@ -11,6 +11,7 @@
                         array(
                             'post' => $post,
                             'local_link' => true,
+                            'table' => 'posts',
                         )
                     );
                 }

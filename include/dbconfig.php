@@ -5,6 +5,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "bookmark";
+$prefix = "bmk_";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -17,23 +18,23 @@ if ($conn->connect_error) {
 }
 
 function closeConn(){
-  global $conn;
+  global $conn, $prefix;
   $conn->close();
 }
 
 function insertQuery($data, $table, $getLastId = false){
-  global $conn;
+  global $conn, $prefix;
   $sql['columns'] = $sql['values'] = [];
   $timestamp = time();
   $datetime = date('Y-m-d H:i:s', $timestamp);
 
   foreach($data as $column => $value){
-    array_push($sql['columns'], $column);
+    array_push($sql['columns'], $table."_".$column);
     array_push($sql['values'], "'".$value."'");
   }
-  $query = "INSERT INTO $table (".implode(',',$sql['columns']).",created_at,updated_at)
+  $query = "INSERT INTO $prefix"."$table (".implode(',',$sql['columns']).",$table"."_created_at,$table"."_updated_at)
   VALUES (".implode(',',$sql['values']).",'".$datetime."','".$datetime."')";
-  
+
   $result = $conn->query($query);
   if($result && $getLastId)
     return $conn->insert_id;
@@ -42,11 +43,11 @@ function insertQuery($data, $table, $getLastId = false){
 }
 
 function insertMultipleQuery($table, $columns, $values){
-  global $conn;
+  global $conn, $prefix;
   $timestamp = time();
   $datetime = date('Y-m-d H:i:s', $timestamp);
 
-  $query = "INSERT INTO $table (".implode(',',$columns).",created_at,updated_at) VALUES ";
+  $query = "INSERT INTO $prefix"."$table (".implode(',',$columns).",$table"."_created_at,$table"."_updated_at) VALUES ";
   foreach($values as $key => $val){
     $query.="(".implode(',',$val).",'".$datetime."','".$datetime."')";
     if($key+1 == count($values)){
@@ -61,40 +62,40 @@ function insertMultipleQuery($table, $columns, $values){
 }
 
 function userVerificationQuery($data, $getLastId = false, $table = 'users'){
-  global $conn;
+  global $conn, $prefix;
 
-  $query = "SELECT * FROM $table WHERE username = '".$data['username']."'";
+  $query = "SELECT * FROM $prefix"."$table WHERE $table"."_username = '".$data['username']."'";
   $result = $conn->query($query);
   if($user = $result->fetch_assoc()){
-    $verify = password_verify($data['password'], $user['password']);
+    $verify = password_verify($data['password'], $user[$table.'_password']);
 
     if($getLastId && $verify)
-      return $user['id'];
+      return $user[$table.'_id'];
     return $verify;
   }
 }
 
 function userExistsQuery($user, $table = 'users'){
-  global $conn;
-  $query = "SELECT * FROM $table WHERE username = '".$user."'";
+  global $conn, $prefix;
+  $query = "SELECT * FROM $prefix"."$table WHERE $table"."_username = '".$user."'";
   $result = $conn->query($query);
   
   return $result->fetch_assoc();
 }
 
 function findQuery($id, $table){
-  global $conn;
+  global $conn, $prefix;
   
-  $query = "SELECT * FROM $table WHERE id =".$id;
+  $query = "SELECT * FROM $prefix"."$table WHERE $table"."_id =".$id;
   $result = $conn->query($query);
 
   return $result->fetch_assoc();
 }
 
 function selectQuery($table, $skip = null, $limit = 0, $toSelect = '*'){
-  global $conn;
+  global $conn, $prefix;
 
-  $query = "SELECT $toSelect FROM $table ORDER BY id DESC LIMIT ".($skip?$skip.',':'')."".$limit;
+  $query = "SELECT $toSelect FROM $prefix"."$table ORDER BY $table"."_id DESC LIMIT ".($skip?$skip.',':'')."".$limit;
   
   $result = $conn->query($query);
 
@@ -102,9 +103,9 @@ function selectQuery($table, $skip = null, $limit = 0, $toSelect = '*'){
 }
 
 function countQuery($table){
-  global $conn;
+  global $conn, $prefix;
 
-  $query = "SELECT COUNT(*) as count FROM $table";
+  $query = "SELECT COUNT(*) as count FROM $prefix"."$table";
   
   $result = $conn->query($query);
   
@@ -112,9 +113,9 @@ function countQuery($table){
 }
 
 function deleteQuery($id, $table){
-  global $conn;
+  global $conn, $prefix;
 
-  $query = "DELETE FROM $table WHERE id = ".$id;
+  $query = "DELETE FROM $prefix"."$table WHERE $table"."_id = ".$id;
 
   $result = $conn->query($query);
 
@@ -122,14 +123,14 @@ function deleteQuery($id, $table){
 }
 
 function toggleStateQuery($id, $table, $column, $value){
-  global $conn;
+  global $conn, $prefix;
   $timestamp = time();
   $datetime = date('Y-m-d H:i:s', $timestamp);
-
-  $query = "UPDATE ".$table."
-  SET ".$column." = ".(1 - $value).", updated_at = '". $datetime ."'
-  WHERE id = ".$id;
-
+  
+  $query = "UPDATE ".$prefix.$table."
+  SET ".$column." = '".$value."', $table"."_updated_at = '". $datetime ."'
+  WHERE $table"."_id = ".$id;
+  
   $result = $conn->query($query);
 
   return $result;

@@ -22,7 +22,7 @@
                     <a class="d-flex flex-column align-items-center" data-captcha="<?= $captcha ?>" data-toggle="modal" data-target="login" href="javascript:void(0)">
                         <span class="icon-user-1 overflow-hidden"></span>
                         <?php if($user){ ?>
-                        <p class="m-0 badge"><?= $user['username'] ?></p>
+                        <p class="m-0 badge"><?= $user['users_username'] ?></p>
                         <?php } ?>
                     </a>
                     <?php if($user){ ?>

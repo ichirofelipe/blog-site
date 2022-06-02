@@ -8,16 +8,16 @@
             <form class="form--validate" method="POST" action="/signup-request">
                 <div class="form__group form__group--append">
                     <span class="icon-user-1"></span>
-                    <input data-fieldname="Username" data-rules="required,max:50" type="text" name="username" placeholder="Username *">
+                    <input data-fieldname="Username" data-rules="required,max:32" type="text" name="username" placeholder="Username *">
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input data-fieldname="Password" data-rules="required,max:50,min:5" class="password" id="password" type="password" name="password" placeholder="Password *">
+                    <input data-fieldname="Password" data-rules="required,max:24,min:5" class="password" id="password" type="password" name="password" placeholder="Password *">
                     <label for="password" class="icon-eye form__toggle-password"></label>
                 </div>
                 <div class="form__group form__group--append">
                     <span class="icon-lock"></span>
-                    <input data-fieldname="Confirmation" data-rules="required,max:50,min:5,confirm" data-confirm="#password" class="password" id="c_password" type="password" name="c_password" placeholder="Confirm Password *">
+                    <input data-fieldname="Confirmation" data-rules="required,max:24,min:5,confirm" data-confirm="#password" class="password" id="c_password" type="password" name="c_password" placeholder="Confirm Password *">
                     <label for="c_password" class="icon-eye form__toggle-password"></label>
                 </div>
 

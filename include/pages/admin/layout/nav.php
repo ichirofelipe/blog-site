@@ -16,7 +16,7 @@
                     <a class="d-flex flex-column align-items-center" href="javascript:void(0)">
                         <span class="icon-user-1 overflow-hidden"></span>
                         <?php if($admin){ ?>
-                        <p class="m-0 badge"><?= $admin['username'] ?></p>
+                        <p class="m-0 badge"><?= $admin['admin_username'] ?></p>
                         <?php } ?>
                     </a>
                     <ul class="dropdown dropdown--align-right">

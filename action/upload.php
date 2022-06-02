@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //GET COLUMNS
             if($flag) {
                 foreach($data as $cols){
-                    array_push($columns, $cols);
+                    array_push($columns, 'posts_'.$cols);
                 }
                 $flag = false;
                 continue; 

@@ -1,18 +1,3 @@
-<?php
-require_once('../../../action/authentication.php');
-require_once('../../../action/contact_list.php');
-
-if(!$admin){
-    header('Location: /admin');
-}
-
-$active = '';
-if(isset($_GET['active_page']) && $_GET['active_page'])
-    $active = clean_input($_GET['active_page']);
-    
-
-include_once("layout/header.php");
-?>
 <div class="container container--full mb-2">
     <div class="heading">
         <h1 class="title title--md">Contacts</h1>
@@ -27,6 +12,7 @@ include_once("layout/header.php");
                     'data' => $contacts,
                     'action' => 'contact',
                     'url' => '/admin/contacts',
+                    'table' => 'contacts',
                 )
             );
         }
@@ -45,6 +31,3 @@ include_once("layout/header.php");
         );
     ?>
 </div>
-<?php
-include_once("layout/footer.php");
-?>

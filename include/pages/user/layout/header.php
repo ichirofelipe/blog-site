@@ -1,6 +1,13 @@
 <?php
 // $title = ucfirst(clean_input($title??$_GET['page_title']??'Home'));
 
+if(isset($_GET['post_id']) && $_GET['post_id']){
+    require_once("action/post_list.php");
+    $title = $posts['posts_title'];
+    $url = $posts['posts_url'];
+    $description = $posts['posts_description'];
+}
+
 if(isset($_GET['page_title']) && $_GET['page_title'] && !isset($title)){
     $title = clean_input($_GET['page_title']);
 }
